@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-function App() {
+
+const App = ({getAllStock}) => {
+	useEffect(() => {
+		getAllStock();
+	})
 	return <div className="App">Hello world!</div>;
 }
 
