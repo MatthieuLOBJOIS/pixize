@@ -10,9 +10,9 @@ const stockMiddleware = (store: any) => (next: any) => (action: any) => {
                mode: 'cors',
                cache: 'default' };
 
-return fetch('http://localhost:3010/api/stock',myInit)
+return fetch(`${process.env.REACT_APP_API_URL}/api/stock`,myInit)
 .then(function(response) {
-  console.log(response.json())
+  console.log(response.json(), process.env.REACT_APP_API_URL)
 })
         }
 		default:
