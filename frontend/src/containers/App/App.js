@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import App from '../App';
+import App from '../../components/App/App';
 
-import { getAllStock } from '../actions/stock';
+import { getAllStock } from '../../actions/stock';
 
 const mapStateToProps = (state) => ({});
 
