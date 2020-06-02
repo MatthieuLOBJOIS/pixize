@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Grid } from 'semantic-ui-react';
+import { Segment, Grid, Menu } from 'semantic-ui-react';
 
 import useStyles from './style';
 import MenuNav from './MenuNav';
@@ -9,14 +9,10 @@ const HeaderView = () => {
   const classes = useStyles();
   return (
     <Segment className={classes.header}>
-      <Grid className={classes.headerGrid}>
-        <Grid.Column className={classes.headerGridNav}>
-          <MenuNav />
-        </Grid.Column>
-        <Grid.Column>
-          <MenuAuth />
-        </Grid.Column>
-      </Grid>
+      <Menu className={classes.headerMenu}>
+        <MenuNav />
+        <MenuAuth />
+      </Menu>
     </Segment>
   );
 };

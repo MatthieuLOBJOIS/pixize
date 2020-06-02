@@ -2,8 +2,7 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   footer: {
-    backgroundColor: 'green',
-    height: '20%',
+    height: '10%',
   },
 });
 

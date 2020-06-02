@@ -1,11 +1,15 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Image } from 'semantic-ui-react';
+import logo from '../../../assets/picture/logo.png';
+
+import useStyles from './style';
 
 const MenuNav = () => {
+  const classes = useStyles();
   return (
-    <Menu>
-      <Menu.Item>menu de navigation</Menu.Item>
-    </Menu>
+    <Menu.Item>
+      <Image src={logo} size="tiny" />
+    </Menu.Item>
   );
 };
 

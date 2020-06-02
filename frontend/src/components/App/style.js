@@ -9,8 +9,7 @@ const useStyles = createUseStyles({
     width: '100%',
   },
   segmentPages: {
-    height: '60%',
-    backgroundColor: 'red',
+    height: '70%',
   },
 });
 
