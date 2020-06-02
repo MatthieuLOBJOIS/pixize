@@ -6,6 +6,7 @@ const useStyles = createUseStyles({
   },
   headerMenu: {
     backgroundColor: '#F7C873 !important',
+    height: '80%',
   },
 });
 
