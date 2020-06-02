@@ -1,7 +1,12 @@
 import React from 'react';
+import { Menu } from 'semantic-ui-react';
 
 const MenuAuth = () => {
-  return <div>menu d'authentification</div>;
+  return (
+    <Menu>
+      <Menu.Item>menu d'authentification</Menu.Item>
+    </Menu>
+  );
 };
 
 export default MenuAuth;

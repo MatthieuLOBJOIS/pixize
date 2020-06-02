@@ -6,6 +6,13 @@ const useStyles = createUseStyles({
     height: '20%',
     color: 'white',
   },
+  headerGrid: {
+    height: '100%',
+    display: 'flex',
+  },
+  headerGridNav: {
+    flex: 1,
+  },
 });
 
 export default useStyles;
