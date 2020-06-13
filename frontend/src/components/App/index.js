@@ -9,24 +9,24 @@ import Home from '../Pages/Home';
 import NotFound from '../Pages/NotFound';
 
 const App = ({ getAllStock }) => {
-  useEffect(() => {
-    getAllStock();
-  });
-  const classes = useStyles();
-  return (
-    <Container className={classes.container} fluid>
-      <Segment.Group className={classes.segmentGroup}>
-        <HeaderView />
-        <Segment className={classes.segmentPages}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route component={NotFound} />
-          </Switch>
-        </Segment>
-        <FooterView />
-      </Segment.Group>
-    </Container>
-  );
+	useEffect(() => {
+		getAllStock();
+	});
+	const classes = useStyles();
+	return (
+		<div className={classes.container}>
+			<Segment.Group className={classes.segmentGroup}>
+				<HeaderView />
+				<Segment className={classes.segmentPages}>
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Route component={NotFound} />
+					</Switch>
+				</Segment>
+				<FooterView />
+			</Segment.Group>
+		</div>
+	);
 };
 
 export default App;
