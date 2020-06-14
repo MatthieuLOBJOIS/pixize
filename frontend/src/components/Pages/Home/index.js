@@ -6,10 +6,12 @@ import PictureGallery from './PictureGallery';
 import ArtworkGallery from './ArtworkGallery';
 import VideoGallery from './VideoGallery';
 import MusicGallery from './MusicGallery';
+import useStyles from './style';
 
 const Home = () => {
+	const classes = useStyles();
 	return (
-		<div>
+		<div className={classes.home}>
 			<SearchBar />
 			<Switch>
 				<Route exact path={[ '/', '/photos' ]} component={PictureGallery} />
