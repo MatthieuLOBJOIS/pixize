@@ -19,7 +19,11 @@ const App = ({ getAllStock }) => {
 				<HeaderView />
 				<Segment className={classes.segmentPages}>
 					<Switch>
-						<Route exact path="/" component={Home} />
+						<Route
+							exact
+							path={[ '/', '/photos', '/illustrations', '/videos', '/musiques' ]}
+							component={Home}
+						/>
 						<Route component={NotFound} />
 					</Switch>
 				</Segment>

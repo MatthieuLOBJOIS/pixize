@@ -12,7 +12,7 @@ const useStyles = createUseStyles({
 			backgroundColor: '#F7C873 !important'
 		}
 	},
-	item: {
+	link: {
 		'@media (max-width: 599px)': {
 			width: '25%'
 		}
