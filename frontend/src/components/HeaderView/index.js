@@ -1,5 +1,6 @@
 import React from 'react';
 import { Segment, Menu, Image, Responsive } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 import useStyles from './style';
 import MenuNav from '../../containers/HeaderView/MenuNav';
@@ -12,10 +13,14 @@ const HeaderView = () => {
 		<Segment className={classes.header}>
 			<Menu className={classes.headerMenu}>
 				<Responsive as={Menu.Item} minWidth={375}>
-					<Image src={logo} size="tiny" />
+					<Link to="/">
+						<Image src={logo} size="tiny" />
+					</Link>
 				</Responsive>
 				<Responsive as={Menu.Item} maxWidth={374}>
-					<Image src={logo} size="mini" />
+					<Link to="/">
+						<Image src={logo} size="mini" />
+					</Link>
 				</Responsive>
 				<MenuNav />
 				<MenuAuth />
