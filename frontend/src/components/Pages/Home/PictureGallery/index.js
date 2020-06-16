@@ -18,7 +18,10 @@ const PictureGallery = () => {
 			<Responsive as={Image.Group} size="small" className={classes.group} maxWidth={599}>
 				{listPicture}
 			</Responsive>
-			<Responsive as={Image.Group} size="big" className={classes.group} minWidth={600}>
+			<Responsive as={Image.Group} size="medium" className={classes.group} minWidth={600} maxWidth={1249}>
+				{listPicture}
+			</Responsive>
+			<Responsive as={Image.Group} size="big" className={classes.group} minWidth={1250}>
 				{listPicture}
 			</Responsive>
 		</div>
