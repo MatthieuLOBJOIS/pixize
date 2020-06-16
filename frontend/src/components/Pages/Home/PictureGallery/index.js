@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Divider } from 'semantic-ui-react';
+import { Image, Divider, Responsive } from 'semantic-ui-react';
 
 import useStyles from './style';
 
@@ -7,23 +7,20 @@ const src = 'https://cdn.pixabay.com/photo/2020/05/01/19/07/tulips-5118757_960_7
 
 const PictureGallery = () => {
 	const classes = useStyles();
+	const listPicture = [];
+	for (let i = 0; i < 20; i++) {
+		listPicture.push(<Image className={classes.picture} src={src} />);
+	}
+
 	return (
 		<div>
 			<Divider hidden />
-			<Image.Group size="small" className={classes.group}>
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-				<Image className={classes.picture} src={src} />
-			</Image.Group>
+			<Responsive as={Image.Group} size="small" className={classes.group} maxWidth={599}>
+				{listPicture}
+			</Responsive>
+			<Responsive as={Image.Group} size="big" className={classes.group} minWidth={600}>
+				{listPicture}
+			</Responsive>
 		</div>
 	);
 };
