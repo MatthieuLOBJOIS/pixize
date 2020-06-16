@@ -15,7 +15,14 @@ const useStyles = createUseStyles({
 	link: {
 		'@media (max-width: 599px)': {
 			width: '25%'
+		},
+		'@media (min-width: 600px)': {
+			width: '50%'
 		}
+	},
+	item: {
+		height: '100%',
+		justifyContent: 'center'
 	}
 });
 
