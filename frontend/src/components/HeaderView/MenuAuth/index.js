@@ -1,46 +1,65 @@
 import React, { useState } from 'react';
 import { Menu, Button, Icon } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 
 import useStyles from './style';
 
 const MenuAuth = () => {
-	const classes = useStyles();
-	const [ darkMode, setDarkMode ] = useState(false);
+  const classes = useStyles();
+  const history = useHistory();
+  const [darkMode, setDarkMode] = useState(false);
 
-	const handleDarkMode = () => {
-		switch (darkMode) {
-			case false:
-				setDarkMode(true);
-				break;
-			case true:
-				setDarkMode(false);
-				break;
-		}
-	};
+  const handleDarkMode = () => {
+    switch (darkMode) {
+      case false:
+        setDarkMode(true);
+        break;
+      case true:
+        setDarkMode(false);
+        break;
+      default:
+        console.log('light');
+    }
+  };
 
-	return (
-		<Menu.Menu className={classes.menu}>
-			<Menu.Item className={classes.item} position="right">
-				<Button basic color="orange">
-					Connexion
-				</Button>
+  const handleAuthClick = (auth) => {
+    return () => {
+      switch (auth) {
+        case 'login':
+          history.push('/connexion');
+          break;
+        case 'register':
+          history.push('/inscription');
+          break;
+        default:
+          console.log('auth');
+      }
+    };
+  };
 
-				<Button basic color="grey">
-					Inscription
-				</Button>
-			</Menu.Item>
-			<Menu.Item>
-				<Icon
-					className={classes.darkMode}
-					size="huge"
-					color={darkMode === false && 'orange'}
-					onClick={handleDarkMode}
-					loading
-					name={darkMode === false ? 'sun' : 'moon'}
-				/>
-			</Menu.Item>
-		</Menu.Menu>
-	);
+  return (
+    <Menu.Menu className={classes.menu}>
+      <Menu.Item className={classes.item} position="right">
+        <Button onClick={handleAuthClick('login')} basic color="orange">
+          Connexion
+        </Button>
+
+        <Button onClick={handleAuthClick('register')} basic color="grey">
+          Inscription
+        </Button>
+      </Menu.Item>
+      <Menu.Item>
+        <Icon
+          className={classes.darkMode}
+          size="huge"
+          color={darkMode === false && 'orange'}
+          onClick={handleDarkMode}
+          loading
+          name={darkMode === false ? 'sun' : 'moon'}
+        />
+      </Menu.Item>
+    </Menu.Menu>
+  );
 };
 
 export default MenuAuth;
