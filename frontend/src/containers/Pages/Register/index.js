@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Register from 'components/Pages/Register';
-import { onChangeInput, onChangeCheck, registerUser } from '../../../actions/user';
+import { onChangeInput, onChangeCheck, registerUser } from 'actions/user';
 
 const mapStateToProps = (state) => ({
 	userAuth: state.user

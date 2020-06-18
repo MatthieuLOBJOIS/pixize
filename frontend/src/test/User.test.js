@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { onChangeInput, onChangeCheck } from '../actions/user';
+import { onChangeInput, onChangeCheck } from 'actions/user';
 
 describe('User action', () => {
 	it('should return object when user enter value', () => {

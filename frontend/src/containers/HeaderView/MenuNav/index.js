@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import MenuNav from '../../../components/HeaderView/MenuNav';
+import MenuNav from 'components/HeaderView/MenuNav';
 
 const mapStateToProps = (state) => ({});
 

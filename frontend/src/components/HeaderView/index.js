@@ -2,10 +2,10 @@ import React from 'react';
 import { Segment, Menu, Image, Responsive } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
+import MenuNav from 'containers/HeaderView/MenuNav';
+import MenuAuth from 'components/HeaderView/MenuAuth';
+import logo from 'assets/picture/logo.png';
 import useStyles from './style';
-import MenuNav from '../../containers/HeaderView/MenuNav';
-import MenuAuth from './MenuAuth';
-import logo from '../../assets/picture/logo.png';
 
 const HeaderView = () => {
 	const classes = useStyles();

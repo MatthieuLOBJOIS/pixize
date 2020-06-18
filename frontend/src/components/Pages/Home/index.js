@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import SearchBar from './SearchBar';
-import PictureGallery from './PictureGallery';
-import ArtworkGallery from './ArtworkGallery';
-import VideoGallery from './VideoGallery';
-import MusicGallery from './MusicGallery';
+import SearchBar from 'components/Pages/Home/SearchBar';
+import PictureGallery from 'components/Pages/Home/PictureGallery';
+import ArtworkGallery from 'components/Pages/Home/ArtworkGallery';
+import VideoGallery from 'components/Pages/Home/VideoGallery';
+import MusicGallery from 'components/Pages/Home/MusicGallery';
 import useStyles from './style';
 
 const Home = () => {
