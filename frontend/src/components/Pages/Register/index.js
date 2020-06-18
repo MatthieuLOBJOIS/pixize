@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, Checkbox } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const Register = ({ userAuth, onChangeInput, onChangeCheck }) => {
+const Register = ({ userAuth, onChangeInput, onChangeCheck, registerUser }) => {
 	console.log(userAuth);
 	return (
 		<div>
@@ -54,7 +54,9 @@ const Register = ({ userAuth, onChangeInput, onChangeCheck }) => {
 						label="Créateur de contenu ?"
 					/>
 				</Form.Field>
-				<Button type="submit">Créer votre compte Pixize</Button>
+				<Button onClick={registerUser} type="submit">
+					Créer votre compte Pixize
+				</Button>
 			</Form>
 		</div>
 	);
