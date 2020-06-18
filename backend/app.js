@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const stockRoutes = require('./routes/stock');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use('/api/stock', stockRoutes);
+app.use('/api/auth', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
