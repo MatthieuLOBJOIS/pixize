@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Container, Segment } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 
 import useStyles from './style';
 import HeaderView from '../HeaderView';
 import FooterView from '../FooterView';
 import Home from '../Pages/Home';
-import Register from '../Pages/Register';
+import Register from '../../containers/Pages/Register';
 import NotFound from '../Pages/NotFound';
 
 const App = ({ getAllStock }) => {
