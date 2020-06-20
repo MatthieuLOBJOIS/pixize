@@ -1,10 +1,11 @@
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
-	home: {
+	layoutInput: {
 		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
+	},
+	iconField: {
+		alignSelf: 'center',
 	},
 });
 

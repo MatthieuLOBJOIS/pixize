@@ -8,12 +8,14 @@ const stockMiddleware = (store) => (next) => (action) => {
 					method: 'GET',
 					headers: { 'Content-Type': 'application/json' },
 					mode: 'cors',
-					cache: 'default'
+					cache: 'default',
 				};
 
-				fetch(`${process.env.REACT_APP_API_URL}/api/stock`, myInit).then((response) => {
-					console.log(response.json(), process.env.REACT_APP_API_URL);
-				});
+				fetch(`${process.env.REACT_APP_API_URL}/api/stock`, myInit).then(
+					(response) => {
+						console.log(response.json(), process.env.REACT_APP_API_URL);
+					}
+				);
 			}
 			break;
 		default:

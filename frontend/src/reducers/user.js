@@ -13,10 +13,12 @@ const userReducer = (state = initialState, action) => {
 		case ON_CHANGE_INPUT: {
 			const identifier = action.identifier;
 			const value = action.data;
-			console.log(identifier, value);
+			const password = state.password.value;
+			const status = validateField(value, identifier, password);
+
 			return {
 				...state,
-				[identifier]: value
+				[identifier]: { value, status },
 			};
 		}
 

@@ -11,7 +11,7 @@ import useStyles from './style';
 const Home = () => {
 	const classes = useStyles();
 	return (
-		<div className={classes.home}>
+		<main className={classes.home}>
 			<SearchBar />
 			<Switch>
 				<Route exact path={[ '/', '/photos' ]} component={PictureGallery} />
@@ -19,7 +19,7 @@ const Home = () => {
 				<Route exact path="/videos" component={VideoGallery} />
 				<Route exact path="/musiques" component={MusicGallery} />
 			</Switch>
-		</div>
+		</main>
 	);
 };
 
