@@ -1,11 +1,13 @@
-import { ON_CHANGE_INPUT, ON_CHANGE_CHECK } from 'actions/user';
+import { ON_CHANGE_INPUT, ON_CHANGE_CHECK, IS_SUBMIT } from 'actions/user';
+import { validateField } from 'utils/validateField';
 
 const initialState = {
-	username: '',
-	mail: '',
-	password: '',
-	passwordConfirm: '',
-	check: false
+	username: { value: '', status: false },
+	mail: { value: '', status: false },
+	password: { value: '', status: false },
+	passwordConfirm: { value: '', status: false },
+	check: false,
+	isSubmit: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -28,7 +30,14 @@ const userReducer = (state = initialState, action) => {
 
 			return {
 				...state,
-				[identifier]: value
+				[identifier]: value,
+			};
+		}
+
+		case IS_SUBMIT: {
+			return {
+				...state,
+				isSubmit: true,
 			};
 		}
 

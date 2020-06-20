@@ -2,6 +2,7 @@
 export const ON_CHANGE_INPUT = 'ON_CHANGE_INPUT';
 export const ON_CHANGE_CHECK = 'ON_CHANGE_CHECK';
 export const REGISTER_USER = 'REGISTER_USER';
+export const IS_SUBMIT = 'IS_SUBMIT';
 
 // action creators
 
@@ -13,7 +14,7 @@ export const REGISTER_USER = 'REGISTER_USER';
 export const onChangeInput = (data, identifier) => ({
 	type: ON_CHANGE_INPUT,
 	data,
-	identifier
+	identifier,
 });
 
 /**
@@ -24,13 +25,13 @@ export const onChangeInput = (data, identifier) => ({
 export const onChangeCheck = (data, identifier) => ({
 	type: ON_CHANGE_CHECK,
 	data,
-	identifier
+	identifier,
 });
 
-/**
- * 
- */
-
 export const registerUser = () => ({
-	type: REGISTER_USER
+	type: REGISTER_USER,
+});
+
+export const isSubmit = () => ({
+	type: IS_SUBMIT,
 });

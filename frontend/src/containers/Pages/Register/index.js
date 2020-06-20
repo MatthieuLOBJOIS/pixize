@@ -4,7 +4,13 @@ import Register from 'components/Pages/Register';
 import { onChangeInput, onChangeCheck, registerUser } from 'actions/user';
 
 const mapStateToProps = (state) => ({
-	userAuth: state.user
+	userAuth: state.user,
+	username: state.user.username,
+	mail: state.user.mail,
+	password: state.user.password,
+	passwordConfirm: state.user.passwordConfirm,
+	check: state.user.check,
+	isSubmit: state.user.isSubmit,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -16,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	registerUser: () => {
 		dispatch(registerUser());
-	}
+	},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

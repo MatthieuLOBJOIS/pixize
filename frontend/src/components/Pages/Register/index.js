@@ -2,54 +2,66 @@ import React from 'react';
 import { Button, Form, Checkbox } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const Register = ({ userAuth, onChangeInput, onChangeCheck, registerUser }) => {
-	console.log(userAuth);
+import Field from 'components/Pages/Register/Field';
+
+const Register = ({
+	username,
+	mail,
+	password,
+	passwordConfirm,
+	check,
+	onChangeInput,
+	onChangeCheck,
+	registerUser,
+	isSubmit,
+}) => {
 	return (
 		<div>
 			<Form>
-				<Form.Field>
-					<label htmlFor="username">
-						Nom d'utilisateur
-						<input
-							onChange={onChangeInput}
-							value={userAuth.username}
-							id="username"
-							placeholder="Nom d'utilisateur"
-						/>
-					</label>
-				</Form.Field>
-				<Form.Field>
-					<label htmlFor="mail">
-						Adresse mail
-						<input onChange={onChangeInput} value={userAuth.mail} id="mail" placeholder="Adresse mail" />
-					</label>
-				</Form.Field>
-				<Form.Field>
-					<label htmlFor="password">
-						Mot de passe
-						<input
-							onChange={onChangeInput}
-							value={userAuth.password}
-							id="password"
-							placeholder="Mot de passe"
-						/>
-					</label>
-				</Form.Field>
-				<Form.Field>
-					<label htmlFor="passwordConfirm">
-						Entrez le mot de passe à nouveau
-						<input
-							onChange={onChangeInput}
-							value={userAuth.passwordConfirm}
-							id="passwordConfirm"
-							placeholder="Entrez le mot de passe à nouveau"
-						/>
-					</label>
-				</Form.Field>
+				<Field
+					label="Nom d'utilisateur"
+					onChangeInput={onChangeInput}
+					value={username.value}
+					idFor="username"
+					placeholder="Nom d'utilisateur"
+					status={isSubmit === true ? username.status : null}
+					type="text"
+				/>
+
+				<Field
+					label="Adresse mail"
+					onChangeInput={onChangeInput}
+					value={mail.value}
+					idFor="mail"
+					placeholder="Adresse mail"
+					status={isSubmit === true ? mail.status : null}
+					type="email"
+				/>
+
+				<Field
+					label="Mot de passe"
+					onChangeInput={onChangeInput}
+					value={password.value}
+					idFor="password"
+					placeholder="Mot de passe"
+					status={isSubmit === true ? password.status : null}
+					type="password"
+				/>
+
+				<Field
+					label="Entrez le mot de passe à nouveau"
+					onChangeInput={onChangeInput}
+					value={passwordConfirm.value}
+					idFor="passwordConfirm"
+					placeholder="Entrez le mot de passe à nouveau"
+					status={isSubmit === true ? passwordConfirm.status : null}
+					type="password"
+				/>
+
 				<Form.Field>
 					<Checkbox
 						onChange={onChangeCheck}
-						checked={userAuth.check}
+						checked={check}
 						id="check"
 						label="Créateur de contenu ?"
 					/>
@@ -63,16 +75,31 @@ const Register = ({ userAuth, onChangeInput, onChangeCheck, registerUser }) => {
 };
 
 Register.propTypes = {
-	userAuth: PropTypes.shape({
-		username: PropTypes.string.isRequired,
-		mail: PropTypes.string.isRequired,
-		password: PropTypes.string.isRequired,
-		passwordConfirm: PropTypes.string.isRequired,
-		check: PropTypes.bool.isRequired
+	username: PropTypes.shape({
+		value: PropTypes.string.isRequired,
+		status: PropTypes.bool.isRequired,
 	}).isRequired,
 
+	mail: PropTypes.shape({
+		value: PropTypes.string.isRequired,
+		status: PropTypes.bool.isRequired,
+	}).isRequired,
+
+	password: PropTypes.shape({
+		value: PropTypes.string.isRequired,
+		status: PropTypes.bool.isRequired,
+	}).isRequired,
+
+	passwordConfirm: PropTypes.shape({
+		value: PropTypes.string.isRequired,
+		status: PropTypes.bool.isRequired,
+	}).isRequired,
+
+	check: PropTypes.bool.isRequired,
+
 	onChangeInput: PropTypes.func.isRequired,
-	onChangeCheck: PropTypes.func.isRequired
+	onChangeCheck: PropTypes.func.isRequired,
+	isSubmit: PropTypes.bool.isRequired,
 };
 
 export default Register;
