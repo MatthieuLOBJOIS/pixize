@@ -3,6 +3,7 @@ export const ON_CHANGE_INPUT = 'ON_CHANGE_INPUT';
 export const ON_CHANGE_CHECK = 'ON_CHANGE_CHECK';
 export const REGISTER_USER = 'REGISTER_USER';
 export const IS_SUBMIT = 'IS_SUBMIT';
+export const CREATED_USER = 'CREATED_USER';
 
 // action creators
 
@@ -34,4 +35,15 @@ export const registerUser = () => ({
 
 export const isSubmit = () => ({
 	type: IS_SUBMIT,
+});
+
+/**
+ * @param {number} response status response of the request api
+ * @param {string} message message of the response
+ */
+
+export const createdUser = (response, message) => ({
+	type: CREATED_USER,
+	response,
+	message,
 });

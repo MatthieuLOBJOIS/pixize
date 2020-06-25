@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { Segment } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 import HeaderView from 'components/HeaderView';
 import FooterView from 'components/FooterView';
@@ -9,11 +10,24 @@ import Register from 'containers/Pages/Register';
 import NotFound from 'components/Pages/NotFound';
 import useStyles from './style';
 
-const App = ({ getAllStock }) => {
+const App = ({ getAllStock, createdUser }) => {
+	const history = useHistory();
+	const classes = useStyles();
+
 	useEffect(() => {
 		getAllStock();
-	});
-	const classes = useStyles();
+	}, []);
+
+	useEffect(
+		() => {
+			if (createdUser.status === 201) {
+				//console.log(createdUser);
+				history.push('/');
+			}
+		},
+		[ createdUser ]
+	);
+
 	return (
 		<div className={classes.container}>
 			<Segment.Group className={classes.segmentGroup}>
@@ -33,6 +47,13 @@ const App = ({ getAllStock }) => {
 			</Segment.Group>
 		</div>
 	);
+};
+
+Register.propTypes = {
+	createdUser: PropTypes.shape({
+		status: PropTypes.number.isRequired,
+		message: PropTypes.string.isRequired
+	}).isRequired
 };
 
 export default App;

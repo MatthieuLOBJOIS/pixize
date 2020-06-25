@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 	password: state.user.password,
 	passwordConfirm: state.user.passwordConfirm,
 	check: state.user.check,
-	isSubmit: state.user.isSubmit,
+	isSubmit: state.user.isSubmit
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	registerUser: () => {
 		dispatch(registerUser());
-	},
+	}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

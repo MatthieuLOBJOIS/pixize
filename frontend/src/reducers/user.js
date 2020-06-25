@@ -1,4 +1,9 @@
-import { ON_CHANGE_INPUT, ON_CHANGE_CHECK, IS_SUBMIT } from 'actions/user';
+import {
+	ON_CHANGE_INPUT,
+	ON_CHANGE_CHECK,
+	IS_SUBMIT,
+	CREATED_USER,
+} from 'actions/user';
 import { validateField } from 'utils/validateField';
 
 const initialState = {
@@ -8,6 +13,10 @@ const initialState = {
 	passwordConfirm: { value: '', status: false },
 	check: false,
 	isSubmit: false,
+	createdUser: {
+		status: null,
+		message: '',
+	},
 };
 
 const userReducer = (state = initialState, action) => {
@@ -38,6 +47,16 @@ const userReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isSubmit: true,
+			};
+		}
+
+		case CREATED_USER: {
+			return {
+				...state,
+				createdUser: {
+					status: action.response,
+					message: action.message,
+				},
 			};
 		}
 
