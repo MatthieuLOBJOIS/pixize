@@ -11,7 +11,7 @@ const userMiddleware = (store) => (next) => (action) => {
 				password: authUser.password.value,
 				check: authUser.check,
 			};
-			console.log(data, 'data');
+
 			const status =
 				authUser.username.status &&
 				authUser.mail.status &&
@@ -31,6 +31,7 @@ const userMiddleware = (store) => (next) => (action) => {
 					})
 					.catch((error) => {
 						console.log(error);
+						store.dispatch(createdUser(error.status, error.statusText));
 					});
 			}
 			break;

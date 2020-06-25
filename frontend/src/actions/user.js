@@ -4,6 +4,7 @@ export const ON_CHANGE_CHECK = 'ON_CHANGE_CHECK';
 export const REGISTER_USER = 'REGISTER_USER';
 export const IS_SUBMIT = 'IS_SUBMIT';
 export const CREATED_USER = 'CREATED_USER';
+export const CLEAR_FIELD = 'CLEAR_FIELD';
 
 // action creators
 
@@ -46,4 +47,8 @@ export const createdUser = (response, message) => ({
 	type: CREATED_USER,
 	response,
 	message,
+});
+
+export const clearField = () => ({
+	type: CLEAR_FIELD,
 });

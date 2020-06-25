@@ -3,6 +3,7 @@ import {
 	ON_CHANGE_CHECK,
 	IS_SUBMIT,
 	CREATED_USER,
+	CLEAR_FIELD,
 } from 'actions/user';
 import { validateField } from 'utils/validateField';
 
@@ -56,6 +57,22 @@ const userReducer = (state = initialState, action) => {
 				createdUser: {
 					status: action.response,
 					message: action.message,
+				},
+			};
+		}
+
+		case CLEAR_FIELD: {
+			return {
+				...state,
+				username: { value: '', status: false },
+				mail: { value: '', status: false },
+				password: { value: '', status: false },
+				passwordConfirm: { value: '', status: false },
+				check: false,
+				isSubmit: false,
+				createdUser: {
+					status: null,
+					message: '',
 				},
 			};
 		}
