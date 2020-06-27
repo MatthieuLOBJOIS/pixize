@@ -7,6 +7,7 @@ import { clearField } from 'actions/user';
 
 const mapStateToProps = (state) => ({
 	createdUser: state.user.createdUser,
+	connectedUser: state.user.connectedUser
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -15,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	clearField: () => {
 		dispatch(clearField());
-	},
+	}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

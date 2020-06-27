@@ -1,10 +1,4 @@
-import {
-	ON_CHANGE_INPUT,
-	ON_CHANGE_CHECK,
-	IS_SUBMIT,
-	CREATED_USER,
-	CLEAR_FIELD,
-} from 'actions/user';
+import { ON_CHANGE_INPUT, ON_CHANGE_CHECK, IS_SUBMIT, CREATED_USER, CLEAR_FIELD, CONNECTED_USER } from 'actions/user';
 import { validateField } from 'utils/validateField';
 
 const initialState = {
@@ -16,8 +10,12 @@ const initialState = {
 	isSubmit: false,
 	createdUser: {
 		status: null,
-		message: '',
+		message: ''
 	},
+	connectedUser: {
+		status: null,
+		message: ''
+	}
 };
 
 const userReducer = (state = initialState, action) => {
@@ -30,7 +28,7 @@ const userReducer = (state = initialState, action) => {
 
 			return {
 				...state,
-				[identifier]: { value, status },
+				[identifier]: { value, status }
 			};
 		}
 
@@ -40,14 +38,14 @@ const userReducer = (state = initialState, action) => {
 
 			return {
 				...state,
-				[identifier]: value,
+				[identifier]: value
 			};
 		}
 
 		case IS_SUBMIT: {
 			return {
 				...state,
-				isSubmit: true,
+				isSubmit: true
 			};
 		}
 
@@ -56,8 +54,8 @@ const userReducer = (state = initialState, action) => {
 				...state,
 				createdUser: {
 					status: action.response,
-					message: action.message,
-				},
+					message: action.message
+				}
 			};
 		}
 
@@ -72,8 +70,18 @@ const userReducer = (state = initialState, action) => {
 				isSubmit: false,
 				createdUser: {
 					status: null,
-					message: '',
-				},
+					message: ''
+				}
+			};
+		}
+
+		case CONNECTED_USER: {
+			return {
+				...state,
+				connectedUser: {
+					status: action.response,
+					message: action.message
+				}
 			};
 		}
 
