@@ -60,7 +60,7 @@ const App = ({ createdUser, connectedUser, clearField }) => {
 				toast({
 					type: 'info',
 					color: 'brown',
-					icon: 'check',
+					icon: 'info',
 					title: `${connectedUser.message}`,
 					animation: 'bounce',
 					time: 5000,

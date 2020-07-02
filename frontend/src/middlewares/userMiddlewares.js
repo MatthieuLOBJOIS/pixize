@@ -51,6 +51,8 @@ const userMiddleware = (store) => (next) => (action) => {
 				})
 					.then((response) => {
 						//console.log(response);
+
+						localStorage.setItem('isConnect', response.status);
 						store.dispatch(connectedUser(response.status, 'Bienvenue sur Pixize !'));
 					})
 					.catch((error) => {

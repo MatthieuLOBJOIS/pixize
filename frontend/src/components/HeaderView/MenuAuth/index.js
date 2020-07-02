@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Menu, Button, Icon } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 
@@ -8,6 +8,8 @@ const MenuAuth = () => {
 	const classes = useStyles();
 	const history = useHistory();
 	const [ darkMode, setDarkMode ] = useState(false);
+	const refConnect = useRef(localStorage.getItem('isConnect') || '');
+	console.log(refConnect, 'ref');
 
 	const handleDarkMode = () => {
 		switch (darkMode) {
@@ -39,15 +41,28 @@ const MenuAuth = () => {
 
 	return (
 		<Menu.Menu className={classes.menu}>
-			<Menu.Item className={classes.item} position="right">
-				<Button onClick={handleAuthClick('login')} basic color="orange">
-					Connexion
-				</Button>
+			{refConnect.current !== '200' ? (
+				<Menu.Item className={classes.item} position="right">
+					<Button onClick={handleAuthClick('login')} basic color="orange">
+						Connexion
+					</Button>
 
-				<Button onClick={handleAuthClick('register')} basic color="grey">
-					Inscription
-				</Button>
-			</Menu.Item>
+					<Button onClick={handleAuthClick('register')} basic color="grey">
+						Inscription
+					</Button>
+				</Menu.Item>
+			) : (
+				<Menu.Item className={classes.item} position="right">
+					<Button basic color="orange">
+						Profil
+					</Button>
+
+					<Button basic color="grey">
+						Déconnexion
+					</Button>
+				</Menu.Item>
+			)}
+
 			<Menu.Item>
 				<Icon
 					className={classes.darkMode}
