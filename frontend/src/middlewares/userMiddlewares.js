@@ -1,5 +1,14 @@
-import { REGISTER_USER, LOGIN_USER, isSubmit, createdUser, connectedUser } from 'actions/user';
+import { resetState } from 'redux-localstore';
 import axios from 'axios';
+import {
+	REGISTER_USER,
+	LOGIN_USER,
+	LOGOUT_USER,
+	isSubmit,
+	createdUser,
+	connectedUser,
+	disconnectUser,
+} from 'actions/user';
 
 const userMiddleware = (store) => (next) => (action) => {
 	switch (action.type) {
@@ -9,7 +18,7 @@ const userMiddleware = (store) => (next) => (action) => {
 				username: authUser.username.value,
 				mail: authUser.mail.value,
 				password: authUser.password.value,
-				check: authUser.check
+				check: authUser.check,
 			};
 
 			const status =
@@ -23,7 +32,7 @@ const userMiddleware = (store) => (next) => (action) => {
 				axios({
 					method: 'post',
 					url: `${process.env.REACT_APP_API_URL}/api/auth/signup`,
-					data
+					data,
 				})
 					.then((response) => {
 						console.log(response);
@@ -31,7 +40,9 @@ const userMiddleware = (store) => (next) => (action) => {
 					})
 					.catch((error) => {
 						console.log(error);
-						store.dispatch(createdUser(error.response.status, error.response.statusText));
+						store.dispatch(
+							createdUser(error.response.status, error.response.statusText)
+						);
 					});
 			}
 			break;
@@ -46,19 +57,31 @@ const userMiddleware = (store) => (next) => (action) => {
 					url: `${process.env.REACT_APP_API_URL}/api/auth/login`,
 					data: {
 						mail,
-						password
-					}
+						password,
+					},
 				})
 					.then((response) => {
 						//console.log(response);
 
-						localStorage.setItem('isConnect', response.status);
-						store.dispatch(connectedUser(response.status, 'Bienvenue sur Pixize !'));
+						store.dispatch(
+							connectedUser(response.status, 'Bienvenue sur Pixize !')
+						);
 					})
 					.catch((error) => {
-						store.dispatch(connectedUser(error.response.status, 'Mot de passe ou mail incorrect'));
+						store.dispatch(
+							connectedUser(
+								error.response.status,
+								'Mot de passe ou mail incorrect'
+							)
+						);
 					});
 			}
+			break;
+		}
+
+		case LOGOUT_USER: {
+			resetState();
+			store.dispatch(disconnectUser());
 			break;
 		}
 
