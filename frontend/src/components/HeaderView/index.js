@@ -3,7 +3,7 @@ import { Segment, Menu, Image, Responsive } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import MenuNav from 'containers/HeaderView/MenuNav';
-import MenuAuth from 'components/HeaderView/MenuAuth';
+import MenuAuth from 'containers/HeaderView/MenuAuth';
 import logo from 'assets/picture/logo.png';
 import useStyles from './style';
 
