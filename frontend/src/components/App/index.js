@@ -17,75 +17,82 @@ const App = ({ createdUser, connectedUser, clearField }) => {
 	const history = useHistory();
 	const classes = useStyles();
 
-	useEffect(
-		() => {
-			if (createdUser.status === 201) {
-				//console.log(createdUser);
-				history.push('/');
-				toast({
-					type: 'success',
-					color: '',
-					icon: 'check',
-					title: `Votre compte a été créé avec succès, vous pouvez vous connecter.`,
-					animation: 'bounce',
-					time: 5000,
-					onClose: () => clearField(),
-					onClick: () => alert('you click on the toast'),
-					onDismiss: () => alert('you have dismissed this toast')
-				});
-			}
+	useEffect(() => {
+		if (createdUser.status === 201) {
+			//console.log(createdUser);
+			history.push('/');
+			toast({
+				type: 'success',
+				color: '',
+				icon: 'check',
+				title: `Votre compte a été créé avec succès, vous pouvez vous connecter.`,
+				animation: 'bounce',
+				time: 5000,
+				onClose: () => clearField(),
+				onClick: () => alert('you click on the toast'),
+				onDismiss: () => alert('you have dismissed this toast'),
+			});
+		}
 
-			if (createdUser.status === 400) {
-				toast({
-					type: 'error',
-					color: 'red',
-					icon: 'close',
-					title: "Echec de l'inscription.",
-					animation: 'bounce',
-					time: 5000,
-					onClose: () => alert('toast is close'),
-					onClick: () => alert('you click on the toast'),
-					onDismiss: () => alert('you have dismissed this toast')
-				});
-			}
-		},
-		[ createdUser ]
-	);
+		if (createdUser.status === 400) {
+			toast({
+				type: 'error',
+				color: 'red',
+				icon: 'close',
+				title: "Echec de l'inscription.",
+				animation: 'bounce',
+				time: 5000,
+				onClose: () => alert('toast is close'),
+				onClick: () => alert('you click on the toast'),
+				onDismiss: () => alert('you have dismissed this toast'),
+			});
+		}
+	}, [createdUser]);
 
-	useEffect(
-		() => {
-			console.log(connectedUser);
-			if (connectedUser.status === 200) {
-				history.push('/');
-				toast({
-					type: 'info',
-					color: 'brown',
-					icon: 'info',
-					title: `${connectedUser.message}`,
-					animation: 'bounce',
-					time: 5000,
-					//onClose: () => alert('toast is close'),
-					onClick: () => alert('you click on the toast'),
-					onDismiss: () => alert('you have dismissed this toast')
-				});
-			}
+	useEffect(() => {
+		if (connectedUser.status === 200) {
+			history.push('/');
+			toast({
+				type: 'info',
+				color: 'brown',
+				icon: 'info',
+				title: `${connectedUser.message}`,
+				animation: 'bounce',
+				time: 5000,
+				//onClose: () => alert('toast is close'),
+				onClick: () => alert('you click on the toast'),
+				onDismiss: () => alert('you have dismissed this toast'),
+			});
+		}
 
-			if (connectedUser.status === 401) {
-				toast({
-					type: 'error',
-					color: 'red',
-					icon: 'close',
-					title: `${connectedUser.message}`,
-					animation: 'bounce',
-					time: 5000,
-					//onClose: () => alert('toast is close'),
-					onClick: () => alert('you click on the toast'),
-					onDismiss: () => alert('you have dismissed this toast')
-				});
-			}
-		},
-		[ connectedUser ]
-	);
+		if (connectedUser.status === 401) {
+			toast({
+				type: 'error',
+				color: 'red',
+				icon: 'close',
+				title: `${connectedUser.message}`,
+				animation: 'bounce',
+				time: 5000,
+				//onClose: () => alert('toast is close'),
+				onClick: () => alert('you click on the toast'),
+				onDismiss: () => alert('you have dismissed this toast'),
+			});
+		}
+
+		if (connectedUser.status === 0) {
+			toast({
+				type: 'info',
+				color: 'orange',
+				icon: 'log out',
+				title: `${connectedUser.message}`,
+				animation: 'bounce',
+				time: 5000,
+				//onClose: () => alert('toast is close'),
+				onClick: () => alert('you click on the toast'),
+				onDismiss: () => alert('you have dismissed this toast'),
+			});
+		}
+	}, [connectedUser]);
 
 	return (
 		<div className={classes.container}>
@@ -96,7 +103,7 @@ const App = ({ createdUser, connectedUser, clearField }) => {
 					<Switch>
 						<Route
 							exact
-							path={[ '/', '/photos', '/illustrations', '/videos', '/musiques' ]}
+							path={['/', '/photos', '/illustrations', '/videos', '/musiques']}
 							component={Home}
 						/>
 						<Route exact path="/inscription" component={Register} />
@@ -113,9 +120,13 @@ const App = ({ createdUser, connectedUser, clearField }) => {
 Register.propTypes = {
 	createdUser: PropTypes.shape({
 		status: PropTypes.number.isRequired,
-		message: PropTypes.string.isRequired
+		message: PropTypes.string.isRequired,
 	}).isRequired,
-	clearField: PropTypes.func.isRequired
+	clearField: PropTypes.func.isRequired,
+	connectedUser: PropTypes.shape({
+		status: PropTypes.number.isRequired,
+		message: PropTypes.string.isRequired,
+	}),
 };
 
 export default App;
