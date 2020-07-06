@@ -7,7 +7,7 @@ import {
 	isSubmit,
 	createdUser,
 	connectedUser,
-	disconnectUser,
+	disconnectUser
 } from 'actions/user';
 
 const userMiddleware = (store) => (next) => (action) => {
@@ -18,7 +18,7 @@ const userMiddleware = (store) => (next) => (action) => {
 				username: authUser.username.value,
 				mail: authUser.mail.value,
 				password: authUser.password.value,
-				check: authUser.check,
+				check: authUser.check
 			};
 
 			const status =
@@ -32,7 +32,7 @@ const userMiddleware = (store) => (next) => (action) => {
 				axios({
 					method: 'post',
 					url: `${process.env.REACT_APP_API_URL}/api/auth/signup`,
-					data,
+					data
 				})
 					.then((response) => {
 						console.log(response);
@@ -40,9 +40,7 @@ const userMiddleware = (store) => (next) => (action) => {
 					})
 					.catch((error) => {
 						console.log(error);
-						store.dispatch(
-							createdUser(error.response.status, error.response.statusText)
-						);
+						store.dispatch(createdUser(error.response.status, error.response.statusText));
 					});
 			}
 			break;
@@ -57,23 +55,16 @@ const userMiddleware = (store) => (next) => (action) => {
 					url: `${process.env.REACT_APP_API_URL}/api/auth/login`,
 					data: {
 						mail,
-						password,
-					},
+						password
+					}
 				})
 					.then((response) => {
-						//console.log(response);
-
-						store.dispatch(
-							connectedUser(response.status, 'Bienvenue sur Pixize !')
-						);
+						console.log(response.data, response);
+						localStorage.setItem('token', response.data.token);
+						store.dispatch(connectedUser(response.status, 'Bienvenue sur Pixize !'));
 					})
 					.catch((error) => {
-						store.dispatch(
-							connectedUser(
-								error.response.status,
-								'Mot de passe ou mail incorrect'
-							)
-						);
+						store.dispatch(connectedUser(error.response.status, 'Mot de passe ou mail incorrect'));
 					});
 			}
 			break;

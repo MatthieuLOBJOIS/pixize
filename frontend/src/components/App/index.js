@@ -117,7 +117,7 @@ const App = ({ createdUser, connectedUser, clearField }) => {
 	);
 };
 
-Register.propTypes = {
+App.propTypes = {
 	createdUser: PropTypes.shape({
 		status: PropTypes.number.isRequired,
 		message: PropTypes.string.isRequired,
@@ -126,7 +126,7 @@ Register.propTypes = {
 	connectedUser: PropTypes.shape({
 		status: PropTypes.number.isRequired,
 		message: PropTypes.string.isRequired,
-	}),
+	}).isRequired,
 };
 
 export default App;
