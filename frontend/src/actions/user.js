@@ -20,7 +20,7 @@ export const CLEAR_FIELD = 'CLEAR_FIELD';
 export const onChangeInput = (data, identifier) => ({
 	type: ON_CHANGE_INPUT,
 	data,
-	identifier,
+	identifier
 });
 
 /**
@@ -31,34 +31,32 @@ export const onChangeInput = (data, identifier) => ({
 export const onChangeCheck = (data, identifier) => ({
 	type: ON_CHANGE_CHECK,
 	data,
-	identifier,
+	identifier
 });
 
 export const registerUser = () => ({
-	type: REGISTER_USER,
+	type: REGISTER_USER
 });
 
 export const loginUser = () => ({
-	type: LOGIN_USER,
+	type: LOGIN_USER
 });
 
 export const logoutUser = () => ({
-	type: LOGOUT_USER,
+	type: LOGOUT_USER
 });
 
 export const isSubmit = () => ({
-	type: IS_SUBMIT,
+	type: IS_SUBMIT
 });
 
 /**
  * @param {number} response status response of the request api
- * @param {string} message message of the response
  */
 
-export const createdUser = (response, message) => ({
+export const createdUser = (response) => ({
 	type: CREATED_USER,
-	response,
-	message,
+	response
 });
 
 /**
@@ -69,13 +67,13 @@ export const createdUser = (response, message) => ({
 export const connectedUser = (response, message) => ({
 	type: CONNECTED_USER,
 	response,
-	message,
+	message
 });
 
 export const disconnectUser = () => ({
-	type: DISCONNECT_USER,
+	type: DISCONNECT_USER
 });
 
 export const clearField = () => ({
-	type: CLEAR_FIELD,
+	type: CLEAR_FIELD
 });

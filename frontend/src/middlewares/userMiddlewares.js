@@ -36,11 +36,11 @@ const userMiddleware = (store) => (next) => (action) => {
 				})
 					.then((response) => {
 						console.log(response);
-						store.dispatch(createdUser(response.status, response.data.message));
+						store.dispatch(createdUser(response.status));
 					})
 					.catch((error) => {
 						console.log(error);
-						store.dispatch(createdUser(error.response.status, error.response.statusText));
+						store.dispatch(createdUser(error.response.status));
 					});
 			}
 			break;

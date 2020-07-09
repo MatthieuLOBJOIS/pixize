@@ -5,7 +5,7 @@ import {
 	CREATED_USER,
 	CLEAR_FIELD,
 	CONNECTED_USER,
-	DISCONNECT_USER,
+	DISCONNECT_USER
 } from 'actions/user';
 import { validateField } from 'utils/validateField';
 import { defineState } from 'redux-localstore';
@@ -18,13 +18,12 @@ const initialState = {
 	check: false,
 	isSubmit: false,
 	createdUser: {
-		status: null,
-		message: '',
+		status: null
 	},
 	connectedUser: {
 		status: null,
-		message: '',
-	},
+		message: ''
+	}
 };
 
 const userReducer = (state = defineState(initialState)('User'), action) => {
@@ -37,7 +36,7 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 
 			return {
 				...state,
-				[identifier]: { value, status },
+				[identifier]: { value, status }
 			};
 		}
 
@@ -47,14 +46,14 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 
 			return {
 				...state,
-				[identifier]: value,
+				[identifier]: value
 			};
 		}
 
 		case IS_SUBMIT: {
 			return {
 				...state,
-				isSubmit: true,
+				isSubmit: true
 			};
 		}
 
@@ -62,9 +61,8 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 			return {
 				...state,
 				createdUser: {
-					status: action.response,
-					message: action.message,
-				},
+					status: action.response
+				}
 			};
 		}
 
@@ -78,9 +76,8 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 				check: false,
 				isSubmit: false,
 				createdUser: {
-					status: null,
-					message: '',
-				},
+					status: null
+				}
 			};
 		}
 
@@ -89,8 +86,8 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 				...state,
 				connectedUser: {
 					status: action.response,
-					message: action.message,
-				},
+					message: action.message
+				}
 			};
 		}
 
@@ -99,9 +96,8 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 				...state,
 				connectedUser: {
 					status: 0,
-					message:
-						'Vous avez été déconnecté avec succès, à bientôt sur Pixize !',
-				},
+					message: 'Vous avez été déconnecté avec succès, à bientôt sur Pixize !'
+				}
 			};
 		}
 
