@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom';
 
 import useStyles from './style';
 
-const MenuAuth = () => {
+const MenuAuth = ({ logoutUser, connectedUser }) => {
 	const classes = useStyles();
 	const history = useHistory();
-	const [ darkMode, setDarkMode ] = useState(false);
+	const [darkMode, setDarkMode] = useState(false);
 
 	const handleDarkMode = () => {
 		switch (darkMode) {
@@ -31,6 +31,13 @@ const MenuAuth = () => {
 				case 'register':
 					history.push('/inscription');
 					break;
+				case 'settings':
+					history.push('/profil');
+					break;
+				case 'logout':
+					history.push('/');
+					logoutUser();
+					break;
 				default:
 					console.log('auth');
 			}
@@ -39,15 +46,28 @@ const MenuAuth = () => {
 
 	return (
 		<Menu.Menu className={classes.menu}>
-			<Menu.Item className={classes.item} position="right">
-				<Button onClick={handleAuthClick('login')} basic color="orange">
-					Connexion
-				</Button>
+			{connectedUser?.status !== 200 ? (
+				<Menu.Item className={classes.item} position="right">
+					<Button onClick={handleAuthClick('login')} basic color="orange">
+						Connexion
+					</Button>
 
-				<Button onClick={handleAuthClick('register')} basic color="grey">
-					Inscription
-				</Button>
-			</Menu.Item>
+					<Button onClick={handleAuthClick('register')} basic color="grey">
+						Inscription
+					</Button>
+				</Menu.Item>
+			) : (
+				<Menu.Item className={classes.item} position="right">
+					<Button onClick={handleAuthClick('settings')} basic color="orange">
+						Profil
+					</Button>
+
+					<Button onClick={handleAuthClick('logout')} basic color="grey">
+						Déconnexion
+					</Button>
+				</Menu.Item>
+			)}
+
 			<Menu.Item>
 				<Icon
 					className={classes.darkMode}
