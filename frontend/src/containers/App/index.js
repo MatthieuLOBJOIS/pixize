@@ -6,8 +6,9 @@ import { getAllStock } from 'actions/stock';
 import { clearField } from 'actions/user';
 
 const mapStateToProps = (state) => ({
-	createdUser: state.user.createdUser,
-	connectedUser: state.user.connectedUser
+	alertToast: state.user.alertToast,
+	userAuth: state.user.userAuth,
+	userCreat: state.user.userCreat
 });
 
 const mapDispatchToProps = (dispatch) => ({

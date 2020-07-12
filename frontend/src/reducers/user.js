@@ -1,3 +1,5 @@
+import jwtDecode from 'jwt-decode';
+
 import {
 	ON_CHANGE_INPUT,
 	ON_CHANGE_CHECK,
@@ -5,7 +7,9 @@ import {
 	CREATED_USER,
 	CLEAR_FIELD,
 	CONNECTED_USER,
-	DISCONNECT_USER
+	DISCONNECT_USER,
+	TAKE_DATA_USER,
+	SET_ALERT
 } from 'actions/user';
 import { validateField } from 'utils/validateField';
 import { defineState } from 'redux-localstore';
@@ -17,13 +21,10 @@ const initialState = {
 	passwordConfirm: { value: '', status: false },
 	check: false,
 	isSubmit: false,
-	createdUser: {
-		status: null
-	},
-	connectedUser: {
-		status: null,
-		message: ''
-	}
+	currentUser: {},
+	alertToast: {},
+	userAuth: '',
+	userCreat: ''
 };
 
 const userReducer = (state = defineState(initialState)('User'), action) => {
@@ -60,9 +61,7 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 		case CREATED_USER: {
 			return {
 				...state,
-				createdUser: {
-					status: action.response
-				}
+				userCreat: action.payload
 			};
 		}
 
@@ -75,29 +74,38 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 				passwordConfirm: { value: '', status: false },
 				check: false,
 				isSubmit: false,
-				createdUser: {
-					status: null
-				}
+				userCreat: ''
 			};
 		}
 
 		case CONNECTED_USER: {
 			return {
 				...state,
-				connectedUser: {
-					status: action.response,
-					message: action.message
-				}
+				userAuth: action.payload
 			};
 		}
 
 		case DISCONNECT_USER: {
 			return {
 				...state,
-				connectedUser: {
-					status: 0,
-					message: 'Vous avez été déconnecté avec succès, à bientôt sur Pixize !'
-				}
+				userAuth: action.payload
+			};
+		}
+
+		case TAKE_DATA_USER: {
+			const token = localStorage.getItem('token');
+			const decoded = jwtDecode(token);
+
+			return {
+				...state,
+				dataUser: decoded.dataUser
+			};
+		}
+
+		case SET_ALERT: {
+			return {
+				...state,
+				alertToast: action.payload
 			};
 		}
 

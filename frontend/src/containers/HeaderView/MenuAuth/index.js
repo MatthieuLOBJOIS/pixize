@@ -8,14 +8,15 @@ const mapStateToProps = (state) => {
 	const stateLocalStorage = getState();
 
 	return {
-		connectedUser: stateLocalStorage?.user?.connectedUser,
+		//connectedUser: stateLocalStorage?.user?.connectedUser,
+		userAuth: stateLocalStorage.user.userAuth
 	};
 };
 
 const mapDispatchToProps = (dispatch) => ({
 	logoutUser: () => {
 		dispatch(logoutUser());
-	},
+	}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuAuth);

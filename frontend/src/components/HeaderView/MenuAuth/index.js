@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom';
 
 import useStyles from './style';
 
-const MenuAuth = ({ logoutUser, connectedUser }) => {
+const MenuAuth = ({ logoutUser, userAuth }) => {
 	const classes = useStyles();
 	const history = useHistory();
-	const [darkMode, setDarkMode] = useState(false);
+	const [ darkMode, setDarkMode ] = useState(false);
 
 	const handleDarkMode = () => {
 		switch (darkMode) {
@@ -46,7 +46,7 @@ const MenuAuth = ({ logoutUser, connectedUser }) => {
 
 	return (
 		<Menu.Menu className={classes.menu}>
-			{connectedUser?.status !== 200 ? (
+			{userAuth !== 'isConnect' ? (
 				<Menu.Item className={classes.item} position="right">
 					<Button onClick={handleAuthClick('login')} basic color="orange">
 						Connexion

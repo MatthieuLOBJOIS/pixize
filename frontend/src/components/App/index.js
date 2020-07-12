@@ -14,86 +14,30 @@ import NotFound from 'components/Pages/NotFound';
 import Profile from 'components/Pages/Profile';
 import useStyles from './style';
 
-const App = ({ createdUser, connectedUser, clearField }) => {
+const App = ({ alertToast, userAuth, userCreat, clearField }) => {
 	const history = useHistory();
 	const classes = useStyles();
 
-	useEffect(() => {
-		if (createdUser.status === 201) {
-			//console.log(createdUser);
-			history.push('/');
-			toast({
-				type: 'success',
-				color: '',
-				icon: 'check',
-				title: `Votre compte a été créé avec succès, vous pouvez vous connecter.`,
-				animation: 'bounce',
-				time: 5000,
-				onClose: () => clearField(),
-				onClick: () => alert('you click on the toast'),
-				onDismiss: () => alert('you have dismissed this toast'),
-			});
-		}
+	useEffect(
+		() => {
+			if (userAuth !== '' || userCreat !== '') {
+				if (userAuth === 'isConnect' || userCreat === 'isCreat') {
+					history.push('/');
+					clearField();
+				}
 
-		if (createdUser.status === 400) {
-			toast({
-				type: 'error',
-				color: 'red',
-				icon: 'close',
-				title: "Echec de l'inscription.",
-				animation: 'bounce',
-				time: 5000,
-				onClose: () => alert('toast is close'),
-				onClick: () => alert('you click on the toast'),
-				onDismiss: () => alert('you have dismissed this toast'),
-			});
-		}
-	}, [createdUser]);
-
-	useEffect(() => {
-		if (connectedUser.status === 200) {
-			history.push('/');
-			toast({
-				type: 'info',
-				color: 'brown',
-				icon: 'info',
-				title: `${connectedUser.message}`,
-				animation: 'bounce',
-				time: 5000,
-				//onClose: () => alert('toast is close'),
-				onClick: () => alert('you click on the toast'),
-				onDismiss: () => alert('you have dismissed this toast'),
-			});
-		}
-
-		if (connectedUser.status === 401) {
-			toast({
-				type: 'error',
-				color: 'red',
-				icon: 'close',
-				title: `${connectedUser.message}`,
-				animation: 'bounce',
-				time: 5000,
-				//onClose: () => alert('toast is close'),
-				onClick: () => alert('you click on the toast'),
-				onDismiss: () => alert('you have dismissed this toast'),
-			});
-		}
-
-		if (connectedUser.status === 0) {
-			toast({
-				type: 'info',
-				color: 'orange',
-				icon: 'log out',
-				title: `${connectedUser.message}`,
-				animation: 'bounce',
-				time: 5000,
-				//onClose: () => alert('toast is close'),
-				onClick: () => alert('you click on the toast'),
-				onDismiss: () => alert('you have dismissed this toast'),
-			});
-		}
-	}, [connectedUser]);
+				toast({
+					...alertToast,
+					animation: 'bounce',
+					time: 5000,
+					onClose: () => console.log('close'),
+					onClick: () => alert('you click on the toast'),
+					onDismiss: () => alert('you have dismissed this toast')
+				});
+			}
+		},
+		[ userAuth, userCreat ]
+	);
 
 	return (
 		<div className={classes.container}>
@@ -104,7 +48,7 @@ const App = ({ createdUser, connectedUser, clearField }) => {
 					<Switch>
 						<Route
 							exact
-							path={['/', '/photos', '/illustrations', '/videos', '/musiques']}
+							path={[ '/', '/photos', '/illustrations', '/videos', '/musiques' ]}
 							component={Home}
 						/>
 						<Route exact path="/inscription" component={Register} />
@@ -120,14 +64,14 @@ const App = ({ createdUser, connectedUser, clearField }) => {
 };
 
 App.propTypes = {
-	createdUser: PropTypes.shape({
-		status: PropTypes.number.isRequired,
-	}).isRequired,
-	clearField: PropTypes.func.isRequired,
-	connectedUser: PropTypes.shape({
-		status: PropTypes.number.isRequired,
-		message: PropTypes.string.isRequired,
-	}).isRequired,
+	userAuth: PropTypes.string.isRequired,
+	userCreat: PropTypes.string.isRequired,
+	alertToast: PropTypes.shape({
+		type: PropTypes.string.isRequired,
+		color: PropTypes.string.isRequired,
+		icon: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired
+	}).isRequired
 };
 
 export default App;

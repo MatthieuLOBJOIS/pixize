@@ -8,6 +8,8 @@ export const IS_SUBMIT = 'IS_SUBMIT';
 export const CREATED_USER = 'CREATED_USER';
 export const CONNECTED_USER = 'CONNECTED_USER';
 export const DISCONNECT_USER = 'DISCONNECT_USER';
+export const TAKE_DATA_USER = 'TAKE_DATA_USER';
+export const SET_ALERT = 'SET_ALERT';
 export const CLEAR_FIELD = 'CLEAR_FIELD';
 
 // action creators
@@ -51,27 +53,43 @@ export const isSubmit = () => ({
 });
 
 /**
- * @param {number} response status response of the request api
+ * @param {string} payload status text response of the request api
  */
 
-export const createdUser = (response) => ({
+export const createdUser = (payload) => ({
 	type: CREATED_USER,
-	response
+	payload
 });
 
 /**
- * @param {number} response status response of the request api
- * @param {string} message message if success or not
+ * @param {string} payload status text response of the request api
  */
 
-export const connectedUser = (response, message) => ({
+export const connectedUser = (payload) => ({
 	type: CONNECTED_USER,
-	response,
-	message
+	payload
 });
 
-export const disconnectUser = () => ({
-	type: DISCONNECT_USER
+/**
+ * @param {string} payload status text of the action
+ */
+
+export const disconnectUser = (payload) => ({
+	type: DISCONNECT_USER,
+	payload
+});
+
+export const takeDataUser = () => ({
+	type: TAKE_DATA_USER
+});
+
+/**
+ * @param {object} payload object with color, type, icon, title of the alert
+ */
+
+export const setAlert = (payload) => ({
+	type: SET_ALERT,
+	payload
 });
 
 export const clearField = () => ({
