@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Icon } from 'semantic-ui-react';
 
-const Field = ({ idFor, label, typeInput }) => {
+const Field = ({ idFor, label, typeInput, value }) => {
 	return (
 		<Form.Field>
 			<label htmlFor={idFor}>{label}</label>
@@ -9,7 +9,7 @@ const Field = ({ idFor, label, typeInput }) => {
 				<input
 					type={typeInput}
 					//onChange={onChangeInput}
-					//value={value}
+					value={value}
 					id={idFor}
 				/>
 			</div>

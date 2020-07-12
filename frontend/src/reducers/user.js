@@ -98,7 +98,7 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 
 			return {
 				...state,
-				dataUser: decoded.dataUser
+				currentUser: decoded.userData
 			};
 		}
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import FormAccount from './FormAccount';
+import FormAccount from 'containers/Pages/Profile/FormAccount';
 import FormGallery from './FormGallery';
 
 const Profile = () => {

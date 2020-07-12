@@ -2,36 +2,37 @@ import React from 'react';
 import { Form, Button, Checkbox } from 'semantic-ui-react';
 import Field from './Field';
 
-const FormAccount = () => {
+const FormAccount = ({ currentUser }) => {
+	console.log(currentUser);
 	return (
 		<div>
 			<Form>
 				<Field
 					label="Nom d'utilisateur"
 					//onChangeInput={onChangeInput}
-					//value={passwordConfirm.value}
-					idFor="username"
-					type="text"
+					value={currentUser.username}
+					id="username"
+					typeInput="text"
 				/>
 
 				<Field
 					label="Mail"
 					//onChangeInput={onChangeInput}
-					//value={passwordConfirm.value}
-					idFor="mail"
-					type="email"
+					value={currentUser.mail}
+					id="mail"
+					typeInput="email"
 				/>
 
 				<Field
 					label="Mot de passe"
 					//onChangeInput={onChangeInput}
-					//value={passwordConfirm.value}
-					idFor="password"
-					type="password"
+					value={currentUser.password}
+					id="password"
+					typeInput="password"
 				/>
 
 				<Form.Field>
-					<Checkbox id="check" label="Devenir membre créateur" />
+					<Checkbox id="check" checked={currentUser.check} label="Devenir membre créateur" />
 				</Form.Field>
 
 				<Button type="submit">Mettre à jour votre compte</Button>
