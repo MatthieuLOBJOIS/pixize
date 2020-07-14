@@ -2,19 +2,15 @@
 export const ON_CHANGE_INPUT = 'ON_CHANGE_INPUT';
 export const ON_CHANGE_CHECK = 'ON_CHANGE_CHECK';
 export const REGISTER_USER = 'REGISTER_USER';
-export const LOGIN_USER = 'LOGIN_USER';
-export const LOGOUT_USER = 'LOGOUT_USER';
+
 export const IS_SUBMIT = 'IS_SUBMIT';
 export const CREATED_USER = 'CREATED_USER';
-export const CONNECTED_USER = 'CONNECTED_USER';
-export const DISCONNECT_USER = 'DISCONNECT_USER';
+
 export const TAKE_DATA_USER = 'TAKE_DATA_USER';
 export const CHANGE_CURRENT_USER = 'CHANGE_CURRENT_USER';
 export const SAVE_NEW_CURRENT_USER = 'SAVE_NEW_CURRENT_USER';
 export const SET_ALERT = 'SET_ALERT';
 export const CLEAR_FIELD = 'CLEAR_FIELD';
-export const FETCH_AUTH = 'FETCH_AUTH';
-export const SET_AUTH = 'SET_AUTH';
 
 // action creators
 
@@ -44,14 +40,6 @@ export const registerUser = () => ({
 	type: REGISTER_USER
 });
 
-export const loginUser = () => ({
-	type: LOGIN_USER
-});
-
-export const logoutUser = () => ({
-	type: LOGOUT_USER
-});
-
 export const isSubmit = () => ({
 	type: IS_SUBMIT
 });
@@ -62,24 +50,6 @@ export const isSubmit = () => ({
 
 export const createdUser = (payload) => ({
 	type: CREATED_USER,
-	payload
-});
-
-/**
- * @param {string} payload status text response of the request api
- */
-
-export const connectedUser = (payload) => ({
-	type: CONNECTED_USER,
-	payload
-});
-
-/**
- * @param {string} payload status text of the action
- */
-
-export const disconnectUser = (payload) => ({
-	type: DISCONNECT_USER,
 	payload
 });
 
@@ -118,13 +88,4 @@ export const setAlert = (payload) => ({
 
 export const clearField = () => ({
 	type: CLEAR_FIELD
-});
-
-export const fetchAuth = () => ({
-	type: FETCH_AUTH
-});
-
-export const setAuth = (payload) => ({
-	type: SET_AUTH,
-	payload
 });

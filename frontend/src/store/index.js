@@ -4,12 +4,14 @@ import storeSynchronize from 'redux-localstore';
 
 import reducer from 'reducers';
 import stockMiddleware from 'middlewares/stockMiddleware';
-import userMiddleware from 'middlewares/userMiddlewares';
+import userMiddleware from 'middlewares/userMiddleware';
+import authMiddleware from 'middlewares/authMiddleware';
 
 const enhancers = composeWithDevTools(
 	applyMiddleware(
 		stockMiddleware,
-		userMiddleware
+		userMiddleware,
+		authMiddleware
 		// ... others middlewares
 	)
 );

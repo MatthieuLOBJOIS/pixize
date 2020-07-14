@@ -20,7 +20,7 @@ const Login = ({ onChangeInput, mail, password, loginUser, userAuth }) => {
 			<Form>
 				<Field
 					onChangeInput={onChangeInput}
-					value={mail.value}
+					value={mail}
 					label="Adresse mail"
 					idFor="mail"
 					placeholder="Adresse mail"
@@ -28,7 +28,7 @@ const Login = ({ onChangeInput, mail, password, loginUser, userAuth }) => {
 				/>
 				<Field
 					onChangeInput={onChangeInput}
-					value={password.value}
+					value={password}
 					label="Mot de passe"
 					idFor="password"
 					placeholder="Mot de passe"

@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 
 import MenuAuth from 'components/HeaderView/MenuAuth';
-import { logoutUser } from 'actions/user';
+import { logoutUser } from 'actions/auth';
 
 const mapStateToProps = (state) => {
 	return {
-		userAuth: state.user.userAuth
+		userAuth: state.auth.userAuth
 	};
 };
 

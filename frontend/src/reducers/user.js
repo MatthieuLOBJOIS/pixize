@@ -6,12 +6,10 @@ import {
 	IS_SUBMIT,
 	CREATED_USER,
 	CLEAR_FIELD,
-	CONNECTED_USER,
-	DISCONNECT_USER,
 	TAKE_DATA_USER,
-	SAVE_NEW_CURRENT_USER,
-	SET_AUTH
+	SAVE_NEW_CURRENT_USER
 } from 'actions/user';
+
 import { validateField } from 'utils/validateField';
 import { defineState } from 'redux-localstore';
 
@@ -24,7 +22,6 @@ const initialState = {
 	isSubmit: false,
 	currentUser: {},
 	alertToast: {},
-	userAuth: '',
 	userCreat: ''
 };
 
@@ -79,21 +76,6 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 			};
 		}
 
-		case CONNECTED_USER: {
-			localStorage.setItem('auth', action.payload);
-			return {
-				...state,
-				userAuth: action.payload
-			};
-		}
-
-		case DISCONNECT_USER: {
-			return {
-				...state,
-				userAuth: action.payload
-			};
-		}
-
 		case TAKE_DATA_USER: {
 			const token = localStorage.getItem('token');
 			const decoded = jwtDecode(token);
@@ -110,14 +92,6 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 			return {
 				...state,
 				currentUser: action.data
-			};
-		}
-
-		case SET_AUTH: {
-			console.log(action.payload);
-			return {
-				...state,
-				userAuth: action.payload
 			};
 		}
 
