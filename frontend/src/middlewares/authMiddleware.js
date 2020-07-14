@@ -7,8 +7,8 @@ import { takeDataUser } from 'actions/user';
 const authMiddleware = (store) => (next) => (action) => {
 	switch (action.type) {
 		case LOGIN_USER: {
-			const mail = store.getState().user.mail.value;
-			const password = store.getState().user.password.value;
+			const mail = store.getState().auth.mail;
+			const password = store.getState().auth.password;
 			if (mail !== '' && password !== '') {
 				axios({
 					method: 'post',

@@ -46,14 +46,7 @@ const App = ({ fetchAuth }) => {
 };
 
 App.propTypes = {
-	userAuth: PropTypes.string.isRequired,
-	userCreat: PropTypes.string.isRequired,
-	alertToast: PropTypes.shape({
-		type: PropTypes.string.isRequired,
-		color: PropTypes.string.isRequired,
-		icon: PropTypes.string.isRequired,
-		title: PropTypes.string.isRequired
-	}).isRequired
+	fetchAuth: PropTypes.func.isRequired
 };
 
 export default App;

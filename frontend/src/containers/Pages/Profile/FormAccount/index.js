@@ -1,13 +1,11 @@
 import { connect } from 'react-redux';
-import { getState } from 'redux-localstore';
 
 import FormAccount from 'components/Pages/Profile/FormAccount';
-import { changeCurrentUser, onChangeInput } from 'actions/user';
+import { changeCurrentUser } from 'actions/user';
 
 const mapStateToProps = (state) => {
-	const stateLocalStorage = getState();
 	return {
-		currentUser: stateLocalStorage.user.currentUser
+		currentUser: state.user.currentUser
 	};
 };
 

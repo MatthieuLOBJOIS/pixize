@@ -1,81 +1,13 @@
 import jwtDecode from 'jwt-decode';
 
-import {
-	ON_CHANGE_INPUT,
-	ON_CHANGE_CHECK,
-	IS_SUBMIT,
-	CREATED_USER,
-	CLEAR_FIELD,
-	TAKE_DATA_USER,
-	SAVE_NEW_CURRENT_USER
-} from 'actions/user';
-
-import { validateField } from 'utils/validateField';
-import { defineState } from 'redux-localstore';
+import { TAKE_DATA_USER, SAVE_NEW_CURRENT_USER } from 'actions/user';
 
 const initialState = {
-	username: { value: '', status: false },
-	mail: { value: '', status: false },
-	password: { value: '', status: false },
-	passwordConfirm: { value: '', status: false },
-	check: false,
-	isSubmit: false,
-	currentUser: {},
-	alertToast: {},
-	userCreat: ''
+	currentUser: {}
 };
 
-const userReducer = (state = defineState(initialState)('User'), action) => {
+const userReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case ON_CHANGE_INPUT: {
-			const identifier = action.identifier;
-			const value = action.data;
-			const password = state.password.value;
-			const status = validateField(value, identifier, password);
-
-			return {
-				...state,
-				[identifier]: { value, status }
-			};
-		}
-
-		case ON_CHANGE_CHECK: {
-			const identifier = action.identifier;
-			const value = action.data;
-
-			return {
-				...state,
-				[identifier]: value
-			};
-		}
-
-		case IS_SUBMIT: {
-			return {
-				...state,
-				isSubmit: true
-			};
-		}
-
-		case CREATED_USER: {
-			return {
-				...state,
-				userCreat: action.payload
-			};
-		}
-
-		case CLEAR_FIELD: {
-			return {
-				...state,
-				username: { value: '', status: false },
-				mail: { value: '', status: false },
-				password: { value: '', status: false },
-				passwordConfirm: { value: '', status: false },
-				check: false,
-				isSubmit: false,
-				userCreat: ''
-			};
-		}
-
 		case TAKE_DATA_USER: {
 			const token = localStorage.getItem('token');
 			const decoded = jwtDecode(token);
