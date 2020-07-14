@@ -105,7 +105,8 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 		}
 
 		case SAVE_NEW_CURRENT_USER: {
-			localStorage.setItem('token', action.data);
+			console.log(action.data);
+
 			return {
 				...state,
 				currentUser: action.data

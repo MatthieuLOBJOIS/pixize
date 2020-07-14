@@ -1,4 +1,3 @@
-import { resetState, getState } from 'redux-localstore';
 import axios from 'axios';
 import { alertToast } from 'utils/alertToast';
 
@@ -18,7 +17,6 @@ import {
 } from 'actions/user';
 
 const userMiddleware = (store) => (next) => (action) => {
-	const stateLocalStorage = getState();
 	switch (action.type) {
 		case REGISTER_USER: {
 			const authUser = store.getState().user;
@@ -109,7 +107,6 @@ const userMiddleware = (store) => (next) => (action) => {
 		}
 
 		case LOGOUT_USER: {
-			resetState();
 			localStorage.clear();
 			const alert = {
 				type: 'info',
@@ -125,9 +122,9 @@ const userMiddleware = (store) => (next) => (action) => {
 		case CHANGE_CURRENT_USER: {
 			const identifier = action.identifier;
 			const value = action.data;
-			const currentUserStorage = stateLocalStorage.user.currentUser;
+			const currentUser = store.getState().user.currentUser;
 			const newCurrentUser = {
-				...currentUserStorage,
+				...currentUser,
 				[identifier]: value
 			};
 			store.dispatch(saveNewCurrentUser(newCurrentUser));
@@ -139,6 +136,7 @@ const userMiddleware = (store) => (next) => (action) => {
 
 			if (auth) {
 				store.dispatch(setAuth(auth));
+				store.dispatch(takeDataUser());
 			}
 			break;
 		}
