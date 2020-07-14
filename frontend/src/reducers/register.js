@@ -1,6 +1,13 @@
-import { ON_CHANGE_INPUT, ON_CHANGE_CHECK, IS_SUBMIT, CREATED_USER, CLEAR_FIELD } from 'actions/register';
+import {
+	ON_CHANGE_INPUT,
+	ON_CHANGE_CHECK,
+	IS_SUBMIT,
+	CREATED_USER,
+	CLEAR_FIELD,
+} from 'actions/register';
 
 import { validateField } from 'utils/validateField';
+import { alertToast } from 'utils/alertToast';
 
 const initialState = {
 	username: { value: '', status: false },
@@ -9,7 +16,7 @@ const initialState = {
 	passwordConfirm: { value: '', status: false },
 	check: false,
 	isSubmit: false,
-	userCreat: ''
+	userCreat: '',
 };
 
 const registerReducer = (state = initialState, action) => {
@@ -22,7 +29,7 @@ const registerReducer = (state = initialState, action) => {
 
 			return {
 				...state,
-				[identifier]: { value, status }
+				[identifier]: { value, status },
 			};
 		}
 
@@ -32,21 +39,22 @@ const registerReducer = (state = initialState, action) => {
 
 			return {
 				...state,
-				[identifier]: value
+				[identifier]: value,
 			};
 		}
 
 		case IS_SUBMIT: {
 			return {
 				...state,
-				isSubmit: true
+				isSubmit: true,
 			};
 		}
 
 		case CREATED_USER: {
+			alertToast(action.payload);
 			return {
 				...state,
-				userCreat: action.payload
+				userCreat: action.payload,
 			};
 		}
 
@@ -59,7 +67,7 @@ const registerReducer = (state = initialState, action) => {
 				passwordConfirm: { value: '', status: false },
 				check: false,
 				isSubmit: false,
-				userCreat: ''
+				userCreat: '',
 			};
 		}
 

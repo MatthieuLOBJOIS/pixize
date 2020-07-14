@@ -1,25 +1,34 @@
-import { CONNECTED_USER, DISCONNECT_USER, SET_AUTH, ON_CHANGE_INPUT } from 'actions/auth';
+import {
+	CONNECTED_USER,
+	DISCONNECT_USER,
+	SET_AUTH,
+	ON_CHANGE_INPUT,
+} from 'actions/auth';
+
+import { alertToast } from 'utils/alertToast';
 
 const initialState = {
 	userAuth: '',
 	mail: '',
-	password: ''
+	password: '',
 };
 
 const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case CONNECTED_USER: {
 			localStorage.setItem('auth', action.payload);
+			alertToast(action.payload);
 			return {
 				...state,
-				userAuth: action.payload
+				userAuth: action.payload,
 			};
 		}
 
 		case DISCONNECT_USER: {
+			alertToast(action.payload);
 			return {
 				...state,
-				userAuth: action.payload
+				userAuth: action.payload,
 			};
 		}
 
@@ -27,7 +36,7 @@ const authReducer = (state = initialState, action) => {
 			console.log(action.payload);
 			return {
 				...state,
-				userAuth: action.payload
+				userAuth: action.payload,
 			};
 		}
 
@@ -36,7 +45,7 @@ const authReducer = (state = initialState, action) => {
 
 			return {
 				...state,
-				[identifier]: action.data
+				[identifier]: action.data,
 			};
 		}
 

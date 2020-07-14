@@ -1,7 +1,13 @@
 import axios from 'axios';
-import { alertToast } from 'utils/alertToast';
 
-import { LOGIN_USER, LOGOUT_USER, FETCH_AUTH, connectedUser, disconnectUser, setAuth } from 'actions/auth';
+import {
+	LOGIN_USER,
+	LOGOUT_USER,
+	FETCH_AUTH,
+	connectedUser,
+	disconnectUser,
+	setAuth,
+} from 'actions/auth';
 import { takeDataUser } from 'actions/user';
 
 const authMiddleware = (store) => (next) => (action) => {
@@ -15,31 +21,18 @@ const authMiddleware = (store) => (next) => (action) => {
 					url: `${process.env.REACT_APP_API_URL}/api/auth/login`,
 					data: {
 						mail,
-						password
-					}
+						password,
+					},
 				})
 					.then((response) => {
 						//console.log(response.data, response);
-						const alert = {
-							type: 'info',
-							color: 'brown',
-							icon: 'info',
-							title: 'Bienvenue sur Pixize !'
-						};
-						alertToast(alert);
+
 						localStorage.setItem('token', response.data.token);
 
 						store.dispatch(takeDataUser());
 						store.dispatch(connectedUser('isConnect'));
 					})
 					.catch((error) => {
-						const alert = {
-							type: 'error',
-							color: 'red',
-							icon: 'close',
-							title: 'Mot de passe ou mail incorrect'
-						};
-						alertToast(alert);
 						store.dispatch(connectedUser('isConnectError'));
 					});
 			}
@@ -48,13 +41,7 @@ const authMiddleware = (store) => (next) => (action) => {
 
 		case LOGOUT_USER: {
 			localStorage.clear();
-			const alert = {
-				type: 'info',
-				color: 'orange',
-				icon: 'log out',
-				title: 'Vous avez été déconnecté avec succès, à bientôt sur Pixize !'
-			};
-			alertToast(alert);
+
 			store.dispatch(disconnectUser('isLogout'));
 			break;
 		}
