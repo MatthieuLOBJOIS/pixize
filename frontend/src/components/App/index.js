@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { SemanticToastContainer, toast } from 'react-semantic-toasts';
+import { SemanticToastContainer } from 'react-semantic-toasts';
 import 'react-semantic-toasts/styles/react-semantic-alert.css';
 
 import HeaderView from 'components/HeaderView';
@@ -14,30 +14,12 @@ import NotFound from 'components/Pages/NotFound';
 import Profile from 'components/Pages/Profile';
 import useStyles from './style';
 
-const App = ({ alertToast, userAuth, userCreat, clearField }) => {
-	const history = useHistory();
+const App = ({ fetchAuth }) => {
 	const classes = useStyles();
 
-	useEffect(
-		() => {
-			if (userAuth !== '' || userCreat !== '') {
-				if (userAuth === 'isConnect' || userCreat === 'isCreat') {
-					history.push('/');
-					clearField();
-				}
-
-				toast({
-					...alertToast,
-					animation: 'bounce',
-					time: 5000,
-					onClose: () => console.log('close'),
-					onClick: () => alert('you click on the toast'),
-					onDismiss: () => alert('you have dismissed this toast')
-				});
-			}
-		},
-		[ userAuth, userCreat ]
-	);
+	useEffect(() => {
+		fetchAuth();
+	}, []);
 
 	return (
 		<div className={classes.container}>

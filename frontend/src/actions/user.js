@@ -9,8 +9,12 @@ export const CREATED_USER = 'CREATED_USER';
 export const CONNECTED_USER = 'CONNECTED_USER';
 export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const TAKE_DATA_USER = 'TAKE_DATA_USER';
+export const CHANGE_CURRENT_USER = 'CHANGE_CURRENT_USER';
+export const SAVE_NEW_CURRENT_USER = 'SAVE_NEW_CURRENT_USER';
 export const SET_ALERT = 'SET_ALERT';
 export const CLEAR_FIELD = 'CLEAR_FIELD';
+export const FETCH_AUTH = 'FETCH_AUTH';
+export const SET_AUTH = 'SET_AUTH';
 
 // action creators
 
@@ -84,6 +88,26 @@ export const takeDataUser = () => ({
 });
 
 /**
+ * @param {string} data value enter by the user
+ * @param {string} identifier id of the input
+ */
+
+export const changeCurrentUser = (data, identifier) => ({
+	type: CHANGE_CURRENT_USER,
+	data,
+	identifier
+});
+
+/**
+ * @param {string} data new value of the current user
+ */
+
+export const saveNewCurrentUser = (data) => ({
+	type: SAVE_NEW_CURRENT_USER,
+	data
+});
+
+/**
  * @param {object} payload object with color, type, icon, title of the alert
  */
 
@@ -94,4 +118,13 @@ export const setAlert = (payload) => ({
 
 export const clearField = () => ({
 	type: CLEAR_FIELD
+});
+
+export const fetchAuth = () => ({
+	type: FETCH_AUTH
+});
+
+export const setAuth = (payload) => ({
+	type: SET_AUTH,
+	payload
 });

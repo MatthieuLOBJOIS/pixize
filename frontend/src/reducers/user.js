@@ -9,7 +9,8 @@ import {
 	CONNECTED_USER,
 	DISCONNECT_USER,
 	TAKE_DATA_USER,
-	SET_ALERT
+	SAVE_NEW_CURRENT_USER,
+	SET_AUTH
 } from 'actions/user';
 import { validateField } from 'utils/validateField';
 import { defineState } from 'redux-localstore';
@@ -79,6 +80,7 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 		}
 
 		case CONNECTED_USER: {
+			localStorage.setItem('auth', action.payload);
 			return {
 				...state,
 				userAuth: action.payload
@@ -102,10 +104,19 @@ const userReducer = (state = defineState(initialState)('User'), action) => {
 			};
 		}
 
-		case SET_ALERT: {
+		case SAVE_NEW_CURRENT_USER: {
+			localStorage.setItem('token', action.data);
 			return {
 				...state,
-				alertToast: action.payload
+				currentUser: action.data
+			};
+		}
+
+		case SET_AUTH: {
+			console.log(action.payload);
+			return {
+				...state,
+				userAuth: action.payload
 			};
 		}
 

@@ -1,19 +1,24 @@
-import { resetState } from 'redux-localstore';
+import { resetState, getState } from 'redux-localstore';
 import axios from 'axios';
+import { alertToast } from 'utils/alertToast';
 
 import {
 	REGISTER_USER,
 	LOGIN_USER,
 	LOGOUT_USER,
+	CHANGE_CURRENT_USER,
+	FETCH_AUTH,
 	isSubmit,
 	createdUser,
 	connectedUser,
 	disconnectUser,
 	takeDataUser,
-	setAlert
+	saveNewCurrentUser,
+	setAuth
 } from 'actions/user';
 
 const userMiddleware = (store) => (next) => (action) => {
+	const stateLocalStorage = getState();
 	switch (action.type) {
 		case REGISTER_USER: {
 			const authUser = store.getState().user;
@@ -45,7 +50,7 @@ const userMiddleware = (store) => (next) => (action) => {
 							icon: 'check',
 							title: `Votre compte a été créé avec succès, vous pouvez vous connecter.`
 						};
-						store.dispatch(setAlert(alert));
+						alertToast(alert);
 						store.dispatch(createdUser('isCreat'));
 					})
 					.catch((error) => {
@@ -56,7 +61,7 @@ const userMiddleware = (store) => (next) => (action) => {
 							icon: 'close',
 							title: "Echec de l'inscription."
 						};
-						store.dispatch(setAlert(alert));
+						alertToast(alert);
 						store.dispatch(createdUser('isCreatError'));
 					});
 			}
@@ -83,11 +88,10 @@ const userMiddleware = (store) => (next) => (action) => {
 							icon: 'info',
 							title: 'Bienvenue sur Pixize !'
 						};
-
+						alertToast(alert);
 						localStorage.setItem('token', response.data.token);
 
 						store.dispatch(takeDataUser());
-						store.dispatch(setAlert(alert));
 						store.dispatch(connectedUser('isConnect'));
 					})
 					.catch((error) => {
@@ -97,7 +101,7 @@ const userMiddleware = (store) => (next) => (action) => {
 							icon: 'close',
 							title: 'Mot de passe ou mail incorrect'
 						};
-						store.dispatch(setAlert(alert));
+						alertToast(alert);
 						store.dispatch(connectedUser('isConnectError'));
 					});
 			}
@@ -106,14 +110,36 @@ const userMiddleware = (store) => (next) => (action) => {
 
 		case LOGOUT_USER: {
 			resetState();
+			localStorage.clear();
 			const alert = {
 				type: 'info',
 				color: 'orange',
 				icon: 'log out',
 				title: 'Vous avez été déconnecté avec succès, à bientôt sur Pixize !'
 			};
-			store.dispatch(setAlert(alert));
+			alertToast(alert);
 			store.dispatch(disconnectUser('isLogout'));
+			break;
+		}
+
+		case CHANGE_CURRENT_USER: {
+			const identifier = action.identifier;
+			const value = action.data;
+			const currentUserStorage = stateLocalStorage.user.currentUser;
+			const newCurrentUser = {
+				...currentUserStorage,
+				[identifier]: value
+			};
+			store.dispatch(saveNewCurrentUser(newCurrentUser));
+			break;
+		}
+
+		case FETCH_AUTH: {
+			const auth = localStorage.getItem('auth');
+
+			if (auth) {
+				store.dispatch(setAuth(auth));
+			}
 			break;
 		}
 

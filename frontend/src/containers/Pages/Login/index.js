@@ -5,7 +5,8 @@ import { loginUser, onChangeInput } from 'actions/user';
 
 const mapStateToProps = (state) => ({
 	mail: state.user.mail,
-	password: state.user.password
+	password: state.user.password,
+	userAuth: state.user.userAuth
 });
 
 const mapDispatchToProps = (dispatch) => ({
