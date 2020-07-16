@@ -48,3 +48,27 @@ exports.login = (req, res, next) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
+
+exports.updateUser = (req, res, next) => {
+  // console.log('request ok', req.body);
+  const user = req.body;
+  User.updateOne({ _id: user._id }, { ...req.body })
+    .then(() => {
+      res.status(200).json({
+        message: 'Objet modifié!',
+        userId: user._id,
+        token: jwt.sign(
+          { userId: user._id, userData: user },
+          'RANDOM_TOKEN_SECRET',
+          {
+            expiresIn: '24h',
+          }
+        ),
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error,
+      });
+    });
+};
