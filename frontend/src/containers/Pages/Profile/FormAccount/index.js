@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import FormAccount from 'components/Pages/Profile/FormAccount';
-import { changeCurrentUser } from 'actions/user';
+import { changeCurrentUser, saveNewCurrentUser } from 'actions/user';
 
 const mapStateToProps = (state) => {
 	return {
@@ -12,6 +12,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 	changeCurrentUser: (event) => {
 		dispatch(changeCurrentUser(event.target.value, event.target.id));
+	},
+
+	saveNewCurrentUser: () => {
+		dispatch(saveNewCurrentUser());
 	}
 });
 

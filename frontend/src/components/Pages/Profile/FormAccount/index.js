@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes, { string } from 'prop-types';
 import { Form, Button, Checkbox } from 'semantic-ui-react';
+
 import Field from './Field';
 
-const FormAccount = ({ currentUser, changeCurrentUser }) => {
+const FormAccount = ({ currentUser, changeCurrentUser, saveNewCurrentUser }) => {
 	//	console.log(currentUser);
 	return (
 		<div>
-			<Form>
+			<Form onSubmit={saveNewCurrentUser}>
 				<Field
 					label="Nom d'utilisateur"
 					changeCurrentUser={changeCurrentUser}
@@ -47,6 +49,12 @@ const FormAccount = ({ currentUser, changeCurrentUser }) => {
 			</Button>
 		</div>
 	);
+};
+
+FormAccount.propTypes = {
+	currentUser: PropTypes.objectOf(PropTypes.string).isRequired,
+	changeCurrentUser: PropTypes.func.isRequired,
+	saveNewCurrentUser: PropTypes.func.isRequired
 };
 
 export default FormAccount;

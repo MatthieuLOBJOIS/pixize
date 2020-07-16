@@ -12,6 +12,7 @@ import Register from 'containers/Pages/Register';
 import Login from 'containers/Pages/Login';
 import NotFound from 'components/Pages/NotFound';
 import Profile from 'components/Pages/Profile';
+
 import useStyles from './style';
 
 const App = ({ fetchAuth }) => {

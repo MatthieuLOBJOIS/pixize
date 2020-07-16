@@ -1,6 +1,7 @@
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
-import { CHANGE_CURRENT_USER, saveNewCurrentUser } from 'actions/user';
+import { CHANGE_CURRENT_USER, SAVE_NEW_CURRENT_USER, updateCurrentUser } from 'actions/user';
 
 const userMiddleware = (store) => (next) => (action) => {
 	switch (action.type) {
@@ -12,7 +13,32 @@ const userMiddleware = (store) => (next) => (action) => {
 				...currentUser,
 				[identifier]: value
 			};
-			store.dispatch(saveNewCurrentUser(newCurrentUser));
+			store.dispatch(updateCurrentUser(newCurrentUser));
+			break;
+		}
+
+		case SAVE_NEW_CURRENT_USER: {
+			const newCurrentUser = store.getState().user.currentUser;
+			const token = localStorage.getItem('token');
+			const decoded = jwtDecode(token);
+
+			if (Object.entries(newCurrentUser).toString() !== Object.entries(decoded.userData).toString()) {
+				axios({
+					method: 'put',
+					url: `${process.env.REACT_APP_API_URL}/api/auth/user/update`,
+					data: {
+						...newCurrentUser
+					}
+				})
+					.then((response) => {
+						console.log(response);
+						localStorage.setItem('token', response.data.token);
+					})
+					.catch((error) => {
+						console.log(error);
+					});
+			}
+
 			break;
 		}
 
