@@ -5,7 +5,9 @@ import { changeCurrentUser, saveNewCurrentUser } from 'actions/user';
 
 const mapStateToProps = (state) => {
 	return {
-		currentUser: state.user.currentUser
+		currentUser: state.user.currentUser,
+		username: state.user.status.username,
+		mail: state.user.status.mail
 	};
 };
 

@@ -4,7 +4,7 @@ import { Form, Button, Checkbox } from 'semantic-ui-react';
 
 import Field from './Field';
 
-const FormAccount = ({ currentUser, changeCurrentUser, saveNewCurrentUser }) => {
+const FormAccount = ({ currentUser, username, mail, changeCurrentUser, saveNewCurrentUser }) => {
 	//	console.log(currentUser);
 	return (
 		<div>
@@ -15,6 +15,7 @@ const FormAccount = ({ currentUser, changeCurrentUser, saveNewCurrentUser }) => 
 					value={currentUser.username}
 					idFor="username"
 					typeInput="text"
+					error={username === false}
 				/>
 
 				<Field
@@ -23,6 +24,7 @@ const FormAccount = ({ currentUser, changeCurrentUser, saveNewCurrentUser }) => 
 					value={currentUser.mail}
 					idFor="mail"
 					typeInput="email"
+					error={mail === false}
 				/>
 
 				{/* <Field
