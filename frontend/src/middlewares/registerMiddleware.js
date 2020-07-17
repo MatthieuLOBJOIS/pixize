@@ -10,7 +10,7 @@ const registerMiddleware = (store) => (next) => (action) => {
 				username: userState.username.value,
 				mail: userState.mail.value,
 				password: userState.password.value,
-				check: userState.check,
+				check: userState.check
 			};
 
 			const status =
@@ -20,23 +20,24 @@ const registerMiddleware = (store) => (next) => (action) => {
 				userState.passwordConfirm.status;
 
 			store.dispatch(isSubmit());
-			if (status) {
-				axios({
-					method: 'post',
-					url: `${process.env.REACT_APP_API_URL}/api/auth/signup`,
-					data,
-				})
-					.then((response) => {
-						console.log(response);
+			console.log(status);
+			// if (status) {
+			// 	axios({
+			// 		method: 'post',
+			// 		url: `${process.env.REACT_APP_API_URL}/api/auth/signup`,
+			// 		data,
+			// 	})
+			// 		.then((response) => {
+			// 			console.log(response);
 
-						store.dispatch(createdUser('isCreat'));
-					})
-					.catch((error) => {
-						console.log(error);
+			// 			store.dispatch(createdUser('isCreat'));
+			// 		})
+			// 		.catch((error) => {
+			// 			console.log(error);
 
-						store.dispatch(createdUser('isCreatError'));
-					});
-			}
+			// 			store.dispatch(createdUser('isCreatError'));
+			// 		});
+			// }
 			break;
 		}
 
