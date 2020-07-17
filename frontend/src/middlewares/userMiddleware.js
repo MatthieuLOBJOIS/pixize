@@ -1,19 +1,30 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
-import { CHANGE_CURRENT_USER, SAVE_NEW_CURRENT_USER, updateCurrentUser } from 'actions/user';
+import { CHANGE_CURRENT_USER, SAVE_NEW_CURRENT_USER, updateCurrentUser, statusValidateField } from 'actions/user';
+import { validateField } from 'utils/validateField';
 
 const userMiddleware = (store) => (next) => (action) => {
 	switch (action.type) {
 		case CHANGE_CURRENT_USER: {
 			const identifier = action.identifier;
 			const value = action.data;
-			const currentUser = store.getState().user.currentUser;
-			const newCurrentUser = {
+
+			let currentUser = store.getState().user.currentUser;
+			let status = store.getState().user.status;
+
+			currentUser = {
 				...currentUser,
 				[identifier]: value
 			};
-			store.dispatch(updateCurrentUser(newCurrentUser));
+
+			status = {
+				...status,
+				[identifier]: validateField(value, identifier)
+			};
+
+			store.dispatch(updateCurrentUser(currentUser));
+			store.dispatch(statusValidateField(status));
 			break;
 		}
 
@@ -21,8 +32,17 @@ const userMiddleware = (store) => (next) => (action) => {
 			const newCurrentUser = store.getState().user.currentUser;
 			const token = localStorage.getItem('token');
 			const decoded = jwtDecode(token);
+			const status = store.getState().user.status;
 
-			if (Object.entries(newCurrentUser).toString() !== Object.entries(decoded.userData).toString()) {
+			const statusArray = Object.values(status);
+			const foundFalsy = statusArray.some((element) => element === false);
+			const foundTruthy = statusArray.some((element) => element === true);
+
+			if (
+				Object.entries(newCurrentUser).toString() !== Object.entries(decoded.userData).toString() &&
+				!foundFalsy &&
+				foundTruthy
+			) {
 				axios({
 					method: 'put',
 					url: `${process.env.REACT_APP_API_URL}/api/auth/user/update`,

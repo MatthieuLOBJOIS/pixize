@@ -5,31 +5,45 @@
  * @returns {boolean} true if value match with regex/condition else false
  */
 
-export const validateField = (value, identifier, password) => {
+export const validateUsername = (value) => {
+	if (value !== '') {
+		return true;
+	}
+	return false;
+};
+
+export const validateMail = (value) => {
+	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+		return true;
+	}
+	return false;
+};
+
+export const validatePassword = (value) => {
+	if (/^(?=.*\d).{4,8}$/.test(value)) {
+		return true;
+	}
+	return false;
+};
+
+export const validateField = (value, identifier) => {
 	switch (identifier) {
 		case 'username': {
-			if (value !== '') {
-				return true;
-			}
-			return false;
+			return validateUsername(value);
 		}
 		case 'mail': {
-			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
-				return true;
-			}
-			return false;
+			return validateMail(value);
 		}
 		case 'password': {
-			if (/^(?=.*\d).{4,8}$/.test(value)) {
-				return true;
-			}
-			return false;
+			return validatePassword(value);
 		}
-		case 'passwordConfirm': {
-			if (value === password) {
-				return true;
-			}
-			return false;
-		}
+		// case 'passwordConfirm': {
+		// 	if (value === password) {
+		// 		return true;
+		// 	}
+		// 	return false;
+		// }
+		default:
+			return true;
 	}
 };

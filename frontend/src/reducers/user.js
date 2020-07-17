@@ -1,9 +1,13 @@
 import jwtDecode from 'jwt-decode';
 
-import { TAKE_DATA_USER, UPDATE_CURRENT_USER } from 'actions/user';
+import { TAKE_DATA_USER, UPDATE_CURRENT_USER, STATUS_VALIDATE_FIELD } from 'actions/user';
 
 const initialState = {
-	currentUser: {}
+	currentUser: {},
+	status: {
+		username: null,
+		mail: null
+	}
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,11 +23,16 @@ const userReducer = (state = initialState, action) => {
 		}
 
 		case UPDATE_CURRENT_USER: {
-			//console.log(action.data);
-
 			return {
 				...state,
 				currentUser: action.data
+			};
+		}
+
+		case STATUS_VALIDATE_FIELD: {
+			return {
+				...state,
+				status: action.payload
 			};
 		}
 
