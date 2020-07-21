@@ -3,6 +3,7 @@ import jwtDecode from 'jwt-decode';
 
 import { CHANGE_CURRENT_USER, SAVE_NEW_CURRENT_USER, updateCurrentUser, statusValidateField } from 'actions/user';
 import { validateField } from 'utils/validateField';
+import { alertToast } from 'utils/alertToast';
 
 const userMiddleware = (store) => (next) => (action) => {
 	switch (action.type) {
@@ -53,6 +54,7 @@ const userMiddleware = (store) => (next) => (action) => {
 					.then((response) => {
 						console.log(response);
 						localStorage.setItem('token', response.data.token);
+						alertToast('userUpdate');
 					})
 					.catch((error) => {
 						console.log(error);

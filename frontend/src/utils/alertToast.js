@@ -8,7 +8,7 @@ export const alertToast = (response) => {
 				type: 'info',
 				color: 'brown',
 				icon: 'info',
-				title: 'Bienvenue sur Pixize !',
+				title: 'Bienvenue sur Pixize !'
 			};
 			break;
 		}
@@ -18,7 +18,7 @@ export const alertToast = (response) => {
 				type: 'error',
 				color: 'red',
 				icon: 'close',
-				title: 'Mot de passe ou mail incorrect',
+				title: 'Mot de passe ou mail incorrect'
 			};
 			break;
 		}
@@ -28,7 +28,7 @@ export const alertToast = (response) => {
 				type: 'info',
 				color: 'orange',
 				icon: 'log out',
-				title: 'Vous avez été déconnecté avec succès, à bientôt sur Pixize !',
+				title: 'Vous avez été déconnecté avec succès, à bientôt sur Pixize !'
 			};
 			break;
 		}
@@ -38,7 +38,7 @@ export const alertToast = (response) => {
 				type: 'success',
 				color: '',
 				icon: 'check',
-				title: `Votre compte a été créé avec succès, vous pouvez vous connecter.`,
+				title: `Votre compte a été créé avec succès, vous pouvez vous connecter.`
 			};
 			break;
 		}
@@ -48,10 +48,20 @@ export const alertToast = (response) => {
 				type: 'error',
 				color: 'red',
 				icon: 'close',
-				title: "Echec de l'inscription.",
+				title: "Echec de l'inscription."
 			};
 			break;
 		}
+
+		case 'userUpdate': {
+			alert = {
+				type: 'success',
+				color: 'green',
+				title: 'Les changements ont été correctement sauvegardé.'
+			};
+			break;
+		}
+
 		default:
 			console.log('error');
 	}
@@ -62,6 +72,6 @@ export const alertToast = (response) => {
 		time: 5000,
 		onClose: () => console.log('close'),
 		onClick: () => console.log('you click on the toast'),
-		onDismiss: () => console.log('you have dismissed this toast'),
+		onDismiss: () => console.log('you have dismissed this toast')
 	});
 };
