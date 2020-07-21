@@ -1,6 +1,6 @@
 {
   "name": "pixize",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Bibliothèque d'images libre de droit",
   "main": "server.js",
   "scripts": {
