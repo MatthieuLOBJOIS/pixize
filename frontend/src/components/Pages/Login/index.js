@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
 import Field from 'components/Pages/Login/Field';
 
-const Login = ({ onChangeInput, mail, password, loginUser }) => {
+const Login = ({ onChangeInput, mail, password, loginUser, userAuth }) => {
+	const history = useHistory();
+
+	useEffect(
+		() => {
+			if (userAuth === 'isConnect') {
+				history.push('/');
+			}
+		},
+		[ userAuth ]
+	);
+
 	return (
 		<div>
 			<Form>
 				<Field
 					onChangeInput={onChangeInput}
-					value={mail.value}
+					value={mail}
 					label="Adresse mail"
 					idFor="mail"
 					placeholder="Adresse mail"
@@ -16,7 +28,7 @@ const Login = ({ onChangeInput, mail, password, loginUser }) => {
 				/>
 				<Field
 					onChangeInput={onChangeInput}
-					value={password.value}
+					value={password}
 					label="Mot de passe"
 					idFor="password"
 					placeholder="Mot de passe"

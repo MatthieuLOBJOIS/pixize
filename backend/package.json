@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon -r dotenv/config server.js",
-    "test": "mocha"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "mongoose-unique-validator": "^2.0.3"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.2.1",
     "chai": "^4.2.0",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",

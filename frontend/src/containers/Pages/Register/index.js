@@ -1,16 +1,15 @@
 import { connect } from 'react-redux';
-
 import Register from 'components/Pages/Register';
-import { onChangeInput, onChangeCheck, registerUser } from 'actions/user';
+import { onChangeInput, onChangeCheck, registerUser, clearField } from 'actions/register';
 
 const mapStateToProps = (state) => ({
-	userAuth: state.user,
-	username: state.user.username,
-	mail: state.user.mail,
-	password: state.user.password,
-	passwordConfirm: state.user.passwordConfirm,
-	check: state.user.check,
-	isSubmit: state.user.isSubmit
+	username: state.register.username,
+	mail: state.register.mail,
+	password: state.register.password,
+	passwordConfirm: state.register.passwordConfirm,
+	check: state.register.check,
+	isSubmit: state.register.isSubmit,
+	userCreat: state.register.userCreat
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,6 +21,9 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	registerUser: () => {
 		dispatch(registerUser());
+	},
+	clearField: () => {
+		dispatch(clearField());
 	}
 });
 

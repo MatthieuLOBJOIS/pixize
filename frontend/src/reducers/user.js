@@ -1,103 +1,38 @@
-import {
-	ON_CHANGE_INPUT,
-	ON_CHANGE_CHECK,
-	IS_SUBMIT,
-	CREATED_USER,
-	CLEAR_FIELD,
-	CONNECTED_USER,
-	DISCONNECT_USER
-} from 'actions/user';
-import { validateField } from 'utils/validateField';
-import { defineState } from 'redux-localstore';
+import jwtDecode from 'jwt-decode';
+
+import { TAKE_DATA_USER, UPDATE_CURRENT_USER, STATUS_VALIDATE_FIELD } from 'actions/user';
 
 const initialState = {
-	username: { value: '', status: false },
-	mail: { value: '', status: false },
-	password: { value: '', status: false },
-	passwordConfirm: { value: '', status: false },
-	check: false,
-	isSubmit: false,
-	createdUser: {
-		status: null
-	},
-	connectedUser: {
-		status: null,
-		message: ''
+	currentUser: {},
+	status: {
+		username: null,
+		mail: null
 	}
 };
 
-const userReducer = (state = defineState(initialState)('User'), action) => {
+const userReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case ON_CHANGE_INPUT: {
-			const identifier = action.identifier;
-			const value = action.data;
-			const password = state.password.value;
-			const status = validateField(value, identifier, password);
+		case TAKE_DATA_USER: {
+			const token = localStorage.getItem('token');
+			const decoded = jwtDecode(token);
 
 			return {
 				...state,
-				[identifier]: { value, status }
+				currentUser: decoded.userData
 			};
 		}
 
-		case ON_CHANGE_CHECK: {
-			const identifier = action.identifier;
-			const value = action.data;
-
+		case UPDATE_CURRENT_USER: {
 			return {
 				...state,
-				[identifier]: value
+				currentUser: action.data
 			};
 		}
 
-		case IS_SUBMIT: {
+		case STATUS_VALIDATE_FIELD: {
 			return {
 				...state,
-				isSubmit: true
-			};
-		}
-
-		case CREATED_USER: {
-			return {
-				...state,
-				createdUser: {
-					status: action.response
-				}
-			};
-		}
-
-		case CLEAR_FIELD: {
-			return {
-				...state,
-				username: { value: '', status: false },
-				mail: { value: '', status: false },
-				password: { value: '', status: false },
-				passwordConfirm: { value: '', status: false },
-				check: false,
-				isSubmit: false,
-				createdUser: {
-					status: null
-				}
-			};
-		}
-
-		case CONNECTED_USER: {
-			return {
-				...state,
-				connectedUser: {
-					status: action.response,
-					message: action.message
-				}
-			};
-		}
-
-		case DISCONNECT_USER: {
-			return {
-				...state,
-				connectedUser: {
-					status: 0,
-					message: 'Vous avez été déconnecté avec succès, à bientôt sur Pixize !'
-				}
+				status: action.payload
 			};
 		}
 

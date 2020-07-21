@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 
 import Login from 'components/Pages/Login';
-import { loginUser, onChangeInput } from 'actions/user';
+import { loginUser, onChangeInput } from 'actions/auth';
 
 const mapStateToProps = (state) => ({
-	mail: state.user.mail,
-	password: state.user.password
+	mail: state.auth.mail,
+	password: state.auth.password,
+	userAuth: state.auth.userAuth
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button, Form, Checkbox } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -13,8 +14,22 @@ const Register = ({
 	onChangeInput,
 	onChangeCheck,
 	registerUser,
-	isSubmit
+	isSubmit,
+	userCreat,
+	clearField
 }) => {
+	const history = useHistory();
+
+	useEffect(
+		() => {
+			if (userCreat === 'isCreat') {
+				history.push('/');
+				clearField();
+			}
+		},
+		[ userCreat ]
+	);
+
 	return (
 		<div>
 			<Form>
