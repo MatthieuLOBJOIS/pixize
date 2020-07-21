@@ -24,7 +24,7 @@ export const changeCurrentUser = (data, identifier) => ({
 });
 
 /**
- * @param {string} data new value of the current user
+ * @param {object} data new value of the current user
  */
 
 export const updateCurrentUser = (data) => ({
