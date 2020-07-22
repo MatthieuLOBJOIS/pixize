@@ -15,7 +15,7 @@ const initialState = {
 		mail: null,
 	},
 	displayAccount: false,
-	displayGallery: true,
+	displayGallery: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -59,6 +59,23 @@ const userReducer = (state = initialState, action) => {
 					status = true;
 			}
 			return { ...state, displayAccount: status };
+		}
+
+		case SET_DISPLAY_GALLERY: {
+			let status = null;
+			switch (action.payload) {
+				case 'open': {
+					status = true;
+					break;
+				}
+				case 'close': {
+					status = false;
+					break;
+				}
+				default:
+					status = true;
+			}
+			return { ...state, displayGallery: status };
 		}
 
 		default:

@@ -13,7 +13,6 @@ const mapStateToProps = (state) => {
 		username: state.user.status.username,
 		mail: state.user.status.mail,
 		displayAccount: state.user.displayAccount,
-		displayGallery: state.user.displayGallery,
 	};
 };
 

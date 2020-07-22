@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Icon, Checkbox } from 'semantic-ui-react';
 import classNames from 'classnames';
@@ -15,7 +15,6 @@ const FormAccount = ({
 	saveNewCurrentUser,
 	setDisplayAccount,
 	displayAccount,
-	displayGallery,
 }) => {
 	//	console.log(currentUser);
 	const classes = useStyles();
