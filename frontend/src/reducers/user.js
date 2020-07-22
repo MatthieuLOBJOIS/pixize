@@ -1,13 +1,21 @@
 import jwtDecode from 'jwt-decode';
 
-import { TAKE_DATA_USER, UPDATE_CURRENT_USER, STATUS_VALIDATE_FIELD } from 'actions/user';
+import {
+	TAKE_DATA_USER,
+	UPDATE_CURRENT_USER,
+	STATUS_VALIDATE_FIELD,
+	SET_DISPLAY_ACCOUNT,
+	SET_DISPLAY_GALLERY,
+} from 'actions/user';
 
 const initialState = {
 	currentUser: {},
 	status: {
 		username: null,
-		mail: null
-	}
+		mail: null,
+	},
+	displayAccount: true,
+	displayGallery: true,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -18,22 +26,39 @@ const userReducer = (state = initialState, action) => {
 
 			return {
 				...state,
-				currentUser: decoded.userData
+				currentUser: decoded.userData,
 			};
 		}
 
 		case UPDATE_CURRENT_USER: {
 			return {
 				...state,
-				currentUser: action.data
+				currentUser: action.data,
 			};
 		}
 
 		case STATUS_VALIDATE_FIELD: {
 			return {
 				...state,
-				status: action.payload
+				status: action.payload,
 			};
+		}
+
+		case SET_DISPLAY_ACCOUNT: {
+			let status = null;
+			switch (action.payload) {
+				case 'open': {
+					status = false;
+					break;
+				}
+				case 'close': {
+					status = true;
+					break;
+				}
+				default:
+					status = true;
+			}
+			return { ...state, displayAccount: status };
 		}
 
 		default:
