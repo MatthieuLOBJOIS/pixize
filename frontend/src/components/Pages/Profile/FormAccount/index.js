@@ -15,18 +15,19 @@ const FormAccount = ({
 	saveNewCurrentUser,
 	setDisplayAccount,
 	displayAccount,
+	displayGallery,
 }) => {
 	//	console.log(currentUser);
-
-	console.log(displayAccount);
 	const classes = useStyles();
-	const rootClass = classNames({ [classes.rootAccount]: displayAccount });
+	const accountClass = classNames(
+		{ [classes.accountHidden]: !displayAccount },
+		{ [classes.accountDisplay]: displayAccount }
+	);
 	return (
 		<div>
-			{displayAccount === true && (
-				<FcSettings onClick={setDisplayAccount('open')} size="5em" />
-			)}
-			<div className={rootClass}>
+			<FcSettings onClick={setDisplayAccount('open')} size="5em" />
+
+			<div className={accountClass}>
 				<Icon
 					onClick={setDisplayAccount('close')}
 					name="close"

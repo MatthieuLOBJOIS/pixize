@@ -14,7 +14,7 @@ const initialState = {
 		username: null,
 		mail: null,
 	},
-	displayAccount: true,
+	displayAccount: false,
 	displayGallery: true,
 };
 
@@ -48,11 +48,11 @@ const userReducer = (state = initialState, action) => {
 			let status = null;
 			switch (action.payload) {
 				case 'open': {
-					status = false;
+					status = true;
 					break;
 				}
 				case 'close': {
-					status = true;
+					status = false;
 					break;
 				}
 				default:
