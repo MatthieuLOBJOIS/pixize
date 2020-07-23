@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 
 import FormGallery from 'components/Pages/Profile/FormGallery';
-import { setDisplayGallery } from 'actions/user';
+import { setDisplayGallery } from 'actions/profile';
 
 const mapStateToProps = (state) => {
 	return {
-		displayGallery: state.user.displayGallery,
+		displayGallery: state.profile.displayGallery
 	};
 };
 
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
 		return () => {
 			dispatch(setDisplayGallery(status));
 		};
-	},
+	}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormGallery);
