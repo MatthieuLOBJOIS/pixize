@@ -7,19 +7,29 @@ const rulesGallery = {
 	top: '50%',
 	transform: 'translate(-50%, -50%)',
 	transition: 'left 1s',
-	backgroundColor: 'white',
+	backgroundColor: 'white'
 };
 
 const useStyles = createUseStyles({
 	galleryHidden: {
 		left: '-100%',
-		...rulesGallery,
+		...rulesGallery
 	},
 
 	galleryDisplay: {
 		left: '50%',
-		...rulesGallery,
+		...rulesGallery
 	},
+
+	iconGallery: {
+		cursor: 'pointer',
+		'@media (min-width: 600px)': {
+			fontSize: '15em'
+		},
+		'@media (max-width: 599px)': {
+			fontSize: '5em'
+		}
+	}
 });
 
 export default useStyles;

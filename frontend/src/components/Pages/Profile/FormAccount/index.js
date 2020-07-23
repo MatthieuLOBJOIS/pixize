@@ -14,7 +14,7 @@ const FormAccount = ({
 	changeCurrentUser,
 	saveNewCurrentUser,
 	setDisplayAccount,
-	displayAccount,
+	displayAccount
 }) => {
 	//	console.log(currentUser);
 	const classes = useStyles();
@@ -24,15 +24,9 @@ const FormAccount = ({
 	);
 	return (
 		<div>
-			<FcSettings onClick={setDisplayAccount('open')} size="5em" />
-
+			<FcSettings className={classes.iconAccount} onClick={setDisplayAccount('open')} />
 			<div className={accountClass}>
-				<Icon
-					onClick={setDisplayAccount('close')}
-					name="close"
-					color="brown"
-					size="big"
-				/>
+				<Icon onClick={setDisplayAccount('close')} name="close" color="brown" size="big" />
 				<Form onSubmit={saveNewCurrentUser}>
 					<Field
 						label="Nom d'utilisateur"
@@ -82,7 +76,7 @@ const FormAccount = ({
 FormAccount.propTypes = {
 	currentUser: PropTypes.objectOf(PropTypes.string).isRequired,
 	changeCurrentUser: PropTypes.func.isRequired,
-	saveNewCurrentUser: PropTypes.func.isRequired,
+	saveNewCurrentUser: PropTypes.func.isRequired
 };
 
 export default FormAccount;

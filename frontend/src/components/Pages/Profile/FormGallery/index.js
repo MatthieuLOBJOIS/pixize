@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { FcGallery } from 'react-icons/fc';
 import { Icon } from 'semantic-ui-react';
+
 import useStyles from './style';
 
 const FormGallery = ({ displayGallery, setDisplayGallery }) => {
@@ -13,14 +14,10 @@ const FormGallery = ({ displayGallery, setDisplayGallery }) => {
 
 	return (
 		<div>
-			<FcGallery onClick={setDisplayGallery('open')} size="5em" />
+			<FcGallery className={classes.iconGallery} onClick={setDisplayGallery('open')} />
+
 			<div className={galleryClass}>
-				<Icon
-					onClick={setDisplayGallery('close')}
-					name="close"
-					color="brown"
-					size="big"
-				/>
+				<Icon onClick={setDisplayGallery('close')} name="close" color="brown" size="big" />
 				gallery
 			</div>
 		</div>
