@@ -62,6 +62,14 @@ export const alertToast = (response) => {
 			break;
 		}
 
+		case 'galleryUpdate': {
+			alert = {
+				type: 'envira gallery',
+				color: 'green',
+				title: 'Galerie mise à jour !'
+			};
+		}
+
 		default:
 			console.log('error');
 	}

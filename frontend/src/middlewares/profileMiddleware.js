@@ -2,6 +2,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 import { UPLOAD_FILES } from 'actions/profile';
+import { alertToast } from 'utils/alertToast';
 
 const profileMiddleware = (store) => (next) => (action) => {
 	switch (action.type) {
@@ -29,6 +30,7 @@ const profileMiddleware = (store) => (next) => (action) => {
 					.post(url, data, config.headers)
 					.then((response) => {
 						console.log(response);
+						alertToast('galleryUpdate');
 					})
 					.catch((error) => {
 						console.log(error);
