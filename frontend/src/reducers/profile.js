@@ -1,8 +1,9 @@
-import { SET_DISPLAY_ACCOUNT, SET_DISPLAY_GALLERY } from 'actions/profile';
+import { SET_DISPLAY_ACCOUNT, SET_DISPLAY_GALLERY, ON_CHANGE_FILES } from 'actions/profile';
 
 const initialState = {
 	displayAccount: false,
-	displayGallery: false
+	displayGallery: false,
+	files: []
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -39,6 +40,10 @@ const profileReducer = (state = initialState, action) => {
 					status = true;
 			}
 			return { ...state, displayGallery: status };
+		}
+
+		case ON_CHANGE_FILES: {
+			return { ...state, files: action.payload };
 		}
 
 		default:

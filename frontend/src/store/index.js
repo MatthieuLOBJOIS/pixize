@@ -7,13 +7,15 @@ import stockMiddleware from 'middlewares/stockMiddleware';
 import userMiddleware from 'middlewares/userMiddleware';
 import authMiddleware from 'middlewares/authMiddleware';
 import registerMiddleware from 'middlewares/registerMiddleware';
+import profileMiddleware from 'middlewares/profileMiddleware';
 
 const enhancers = composeWithDevTools(
 	applyMiddleware(
 		stockMiddleware,
 		userMiddleware,
 		authMiddleware,
-		registerMiddleware
+		registerMiddleware,
+		profileMiddleware
 		// ... others middlewares
 	)
 );

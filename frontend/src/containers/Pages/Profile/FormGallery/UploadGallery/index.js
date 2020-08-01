@@ -2,15 +2,18 @@ import { connect } from 'react-redux';
 
 import UploadGallery from 'components/Pages/Profile/FormGallery/UploadGallery';
 
+import { onChangeFiles, uploadFiles } from 'actions/profile';
+
 const mapStateToProps = (state) => {};
 
 const mapDispatchToProps = (dispatch) => ({
-	handleClickOpenFiles: () => {
-		console.log('open');
+	uploadFiles: (event) => {
+		event.preventDefault();
+		dispatch(uploadFiles());
 	},
 
 	onChangeFiles: (event) => {
-		console.log(event.target.files);
+		dispatch(onChangeFiles(event.target.files));
 	}
 });
 
