@@ -2,9 +2,11 @@ import { connect } from 'react-redux';
 
 import UploadGallery from 'components/Pages/Profile/FormGallery/UploadGallery';
 
-import { onChangeFiles, uploadFiles } from 'actions/profile';
+import { onChangeFiles, uploadFiles, fetchStocksCurrentUser } from 'actions/profile';
 
-const mapStateToProps = (state) => {};
+const mapStateToProps = (state) => ({
+	stocksCurrentUser: state.profile.stocksCurrentUser
+});
 
 const mapDispatchToProps = (dispatch) => ({
 	uploadFiles: (event) => {
@@ -14,6 +16,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 	onChangeFiles: (event) => {
 		dispatch(onChangeFiles(event.target.files));
+	},
+
+	fetchStocksCurrentUser: () => {
+		dispatch(fetchStocksCurrentUser());
 	}
 });
 

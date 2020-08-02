@@ -1,9 +1,10 @@
-import { SET_DISPLAY_ACCOUNT, SET_DISPLAY_GALLERY, ON_CHANGE_FILES } from 'actions/profile';
+import { SET_DISPLAY_ACCOUNT, SET_DISPLAY_GALLERY, ON_CHANGE_FILES, SAVE_STOCKS_CURRENT_USER } from 'actions/profile';
 
 const initialState = {
 	displayAccount: false,
 	displayGallery: false,
-	files: []
+	files: [],
+	stocksCurrentUser: []
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -44,6 +45,10 @@ const profileReducer = (state = initialState, action) => {
 
 		case ON_CHANGE_FILES: {
 			return { ...state, files: action.payload };
+		}
+
+		case SAVE_STOCKS_CURRENT_USER: {
+			return { ...state, stocksCurrentUser: action.payload };
 		}
 
 		default:

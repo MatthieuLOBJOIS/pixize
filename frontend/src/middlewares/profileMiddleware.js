@@ -1,18 +1,24 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
-import { UPLOAD_FILES } from 'actions/profile';
+import {
+	UPLOAD_FILES,
+	FETCH_STOCKS_CURRENT_USER,
+	fetchStocksCurrentUser,
+	saveStocksCurrentUser
+} from 'actions/profile';
 import { alertToast } from 'utils/alertToast';
 
 const profileMiddleware = (store) => (next) => (action) => {
+	const token = localStorage.getItem('token');
+	const decoded = jwtDecode(token);
+	const url = `${process.env.REACT_APP_API_URL}/api/stock/${decoded.userId}`;
+
 	switch (action.type) {
 		case UPLOAD_FILES: {
 			const files = store.getState().profile.files;
 
 			if (files.length > 0) {
-				const token = localStorage.getItem('token');
-				const decoded = jwtDecode(token);
-
 				const data = new FormData();
 
 				for (let i = 0; i < files.length; i++) {
@@ -24,18 +30,31 @@ const profileMiddleware = (store) => (next) => (action) => {
 						'content-type': 'multipart/form-data'
 					}
 				};
-				const url = `${process.env.REACT_APP_API_URL}/api/stock/${decoded.userId}`;
 
 				axios
 					.post(url, data, config.headers)
 					.then((response) => {
 						console.log(response);
 						alertToast('galleryUpdate');
+						store.dispatch(fetchStocksCurrentUser());
 					})
 					.catch((error) => {
 						console.log(error);
 					});
 			}
+			break;
+		}
+
+		case FETCH_STOCKS_CURRENT_USER: {
+			axios
+				.get(url, decoded.userId)
+				.then((response) => {
+					console.log(response);
+					store.dispatch(saveStocksCurrentUser(response.data));
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 			break;
 		}
 		default:
