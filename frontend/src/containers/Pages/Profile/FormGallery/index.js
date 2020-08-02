@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 
 import FormGallery from 'components/Pages/Profile/FormGallery';
-import { setDisplayGallery } from 'actions/profile';
+import { setDisplayGallery, fetchStocksCurrentUser } from 'actions/profile';
 
 const mapStateToProps = (state) => {
 	return {
-		displayGallery: state.profile.displayGallery
+		displayGallery: state.profile.displayGallery,
+		stocksCurrentUser: state.profile.stocksCurrentUser
 	};
 };
 
@@ -14,6 +15,9 @@ const mapDispatchToProps = (dispatch) => ({
 		return () => {
 			dispatch(setDisplayGallery(status));
 		};
+	},
+	fetchStocksCurrentUser: () => {
+		dispatch(fetchStocksCurrentUser());
 	}
 });
 

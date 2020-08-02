@@ -3,11 +3,12 @@ import { createUseStyles } from 'react-jss';
 const rulesGallery = {
 	position: 'fixed',
 	width: '100vw',
-	padding: '6em',
+	maxHeight: '50vh',
 	top: '50%',
 	transform: 'translate(-50%, -50%)',
 	transition: 'left 1s',
-	backgroundColor: 'white'
+	backgroundColor: 'white',
+	display: 'flex'
 };
 
 const useStyles = createUseStyles({
