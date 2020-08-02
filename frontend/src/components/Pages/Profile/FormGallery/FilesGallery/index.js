@@ -35,49 +35,48 @@ const FilesGallery = ({ stocksCurrentUser }) => {
 
 	return (
 		<div className={classes.root}>
-			<p>Mes photos : </p>
-			{imageArray.map((stock) => {
-				return (
-					<img
-						style={{ width: '100px', height: '100px' }}
-						key={stock._id}
-						src={stock.stockUrl}
-						alt={stock.filename}
-					/>
-				);
-			})}
+			<p className={classes.titleStock}>Mes photos : </p>
+			<div className={classes.imageBlock}>
+				{imageArray.map((stock) => {
+					return <img className={classes.image} key={stock._id} src={stock.stockUrl} alt={stock.filename} />;
+				})}
+			</div>
 
-			<p>Mes Musiques : </p>
-			{audioArray.map((stock) => {
-				return (
-					<audio key={stock._id} controls src={stock.stockUrl}>
-						Your browser does not support the
-						<code>audio</code> element.
-					</audio>
-				);
-			})}
+			<p className={classes.titleStock}>Mes Musiques : </p>
+			<div className={classes.audioBlock}>
+				{audioArray.map((stock) => {
+					return (
+						<div className={classes.audioElement} key={stock._id}>
+							<p>{stock.originalname.split('.')[0]}</p>
+							<audio className={classes.audio} controls src={stock.stockUrl}>
+								<track default kind="captions" srcLang="en" />
+								Your browser does not support the
+								<code>audio</code> element.
+							</audio>
+						</div>
+					);
+				})}
+			</div>
 
-			<p>Mes vidéos : </p>
-			{videoArray.map((stock) => {
-				return (
-					<video key={stock._id} controls width="250">
-						<source src={stock.stockUrl} type="video/mp4" />
-						Sorry, your browser doesn't support embedded videos.
-					</video>
-				);
-			})}
+			<p className={classes.titleStock}>Mes vidéos : </p>
+			<div className={classes.videoBlock}>
+				{videoArray.map((stock) => {
+					return (
+						<video className={classes.video} key={stock._id} controls>
+							<source src={stock.stockUrl} type="video/mp4" />
+							<track default kind="captions" srcLang="en" />
+							Sorry, your browser doesn't support embedded videos.
+						</video>
+					);
+				})}
+			</div>
 
-			<p>Mes Illustrations : </p>
-			{artworkArray.map((stock) => {
-				return (
-					<img
-						style={{ width: '100px', height: '100px' }}
-						key={stock._id}
-						src={stock.stockUrl}
-						alt={stock.filename}
-					/>
-				);
-			})}
+			<p className={classes.titleStock}>Mes Illustrations : </p>
+			<div className={classes.imageBlock}>
+				{artworkArray.map((stock) => {
+					return <img className={classes.image} key={stock._id} src={stock.stockUrl} alt={stock.filename} />;
+				})}
+			</div>
 		</div>
 	);
 };

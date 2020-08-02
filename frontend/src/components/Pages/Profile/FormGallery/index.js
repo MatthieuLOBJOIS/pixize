@@ -25,8 +25,16 @@ const FormGallery = ({ displayGallery, setDisplayGallery, stocksCurrentUser, fet
 			<FcGallery className={classes.iconGallery} onClick={setDisplayGallery('open')} />
 
 			<div className={galleryClass}>
-				<Icon onClick={setDisplayGallery('close')} name="close" color="brown" size="big" />
+				<Icon
+					className={classes.iconClose}
+					onClick={setDisplayGallery('close')}
+					name="close"
+					color="brown"
+					size="big"
+				/>
+				<h1>{'Montre-nous tes oeuvres ! :)'}</h1>
 				<UploadGallery />
+
 				<FilesGallery stocksCurrentUser={stocksCurrentUser} />
 			</div>
 		</div>

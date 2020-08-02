@@ -2,13 +2,17 @@ import { createUseStyles } from 'react-jss';
 
 const rulesGallery = {
 	position: 'fixed',
+	overflowY: 'scroll',
+	overflowX: 'hidden',
 	width: '100vw',
-	maxHeight: '50vh',
-	top: '50%',
+	maxHeight: '65vh',
+	top: '55%',
 	transform: 'translate(-50%, -50%)',
 	transition: 'left 1s',
 	backgroundColor: 'white',
-	display: 'flex'
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center'
 };
 
 const useStyles = createUseStyles({
@@ -30,6 +34,10 @@ const useStyles = createUseStyles({
 		'@media (max-width: 599px)': {
 			fontSize: '5em'
 		}
+	},
+
+	iconClose: {
+		cursor: 'pointer'
 	}
 });
 
