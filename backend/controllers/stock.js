@@ -12,6 +12,18 @@ exports.getAllStock = (req, res, next) => {
     });
 };
 
+exports.getUserStock = (req, res, next) => {
+  Stock.find({ userId: req.params.id })
+    .then((stocks) => {
+      res.status(200).json(stocks);
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error,
+      });
+    });
+};
+
 exports.createStock = (req, res, next) => {
   req.files.map((file) => {
     const stockObject = {
@@ -23,7 +35,7 @@ exports.createStock = (req, res, next) => {
       ...stockObject,
       stockUrl: `${req.protocol}://${req.get('host')}/${stockObject.path}`,
     });
-    stock
+    return stock
       .save()
       .then(() => res.status(201).json({ message: 'Objet enregistré !' }))
       .catch((error) => res.status(400).json({ error }));
