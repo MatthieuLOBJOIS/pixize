@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useStyles from './style';
 
 const PictureFile = ({ imageArray }) => {
