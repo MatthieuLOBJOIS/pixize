@@ -1,25 +1,42 @@
 import React, { useState } from 'react';
+import { MdDelete } from 'react-icons/md';
+import classNames from 'classnames';
+
 import useStyles from './style';
 
 const PictureFile = ({ imageArray }) => {
 	const classes = useStyles();
 
-	const [ isShown, setIsShown ] = useState(false);
+	const [ isShown, setIsShown ] = useState({});
 
-	const mouseEnter = () => {
-		setIsShown(true);
+	const mouseEnter = (index) => {
+		return () => {
+			setIsShown({ ...isShown, [index]: true });
+		};
 	};
 
-	const mouseLeave = () => {
-		setIsShown(false);
+	const mouseLeave = (index) => {
+		return () => {
+			setIsShown({ ...isShown, [index]: false });
+		};
 	};
 
 	return (
 		<div className={classes.imageBlock}>
 			{imageArray.length !== 0 ? (
-				imageArray.map((stock) => {
+				imageArray.map((stock, index) => {
+					const iconDeleteClass = classNames(
+						{ [classes.deleteImage]: isShown[index] },
+						{ [classes.deleteImageHidden]: !isShown[index] }
+					);
 					return (
-						<div key={stock._id} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
+						<div
+							onMouseEnter={mouseEnter(index)}
+							onMouseLeave={mouseLeave(index)}
+							className={classes.imageElement}
+							key={stock._id}
+						>
+							<MdDelete className={iconDeleteClass} />
 							<img className={classes.image} src={stock.stockUrl} alt={stock.filename} />
 						</div>
 					);
