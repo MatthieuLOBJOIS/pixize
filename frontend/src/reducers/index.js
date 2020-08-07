@@ -4,12 +4,14 @@ import user from './user';
 import auth from './auth';
 import register from './register';
 import profile from './profile';
+import stock from './stock';
 
 const rootReducer = combineReducers({
 	user,
 	auth,
 	register,
-	profile
+	profile,
+	stock,
 	// other reducer
 });
 
