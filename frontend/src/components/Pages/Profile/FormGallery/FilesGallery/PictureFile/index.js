@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import { MdDelete } from 'react-icons/md';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import useStyles from './style';
 
-const PictureFile = ({ imageArray }) => {
+const PictureFile = ({ imageArray, deleteFile }) => {
 	const classes = useStyles();
 
 	const [ isShown, setIsShown ] = useState({});
 
-	const mouseEnter = (index) => {
+	const mouseHover = (index) => {
+		return () => {
+			setIsShown({ ...isShown, [index]: true });
+		};
+	};
+
+	const mouseFocus = (index) => {
 		return () => {
 			setIsShown({ ...isShown, [index]: true });
 		};
@@ -25,18 +32,15 @@ const PictureFile = ({ imageArray }) => {
 		<div className={classes.imageBlock}>
 			{imageArray.length !== 0 ? (
 				imageArray.map((stock, index) => {
-					const iconDeleteClass = classNames(
-						{ [classes.deleteImage]: isShown[index] },
-						{ [classes.deleteImageHidden]: !isShown[index] }
-					);
 					return (
 						<div
-							onMouseEnter={mouseEnter(index)}
+							onMouseOver={mouseHover(index)}
+							onFocus={mouseFocus(index)}
 							onMouseLeave={mouseLeave(index)}
 							className={classes.imageElement}
 							key={stock._id}
 						>
-							<MdDelete className={iconDeleteClass} />
+							{isShown[index] && <MdDelete onClick={deleteFile} className={classes.deleteImage} />}
 							<img className={classes.image} src={stock.stockUrl} alt={stock.filename} />
 						</div>
 					);
@@ -46,6 +50,11 @@ const PictureFile = ({ imageArray }) => {
 			)}
 		</div>
 	);
+};
+
+PictureFile.propTypes = {
+	imageArray: PropTypes.func.isRequired,
+	deleteFile: PropTypes.func.isRequired
 };
 
 export default PictureFile;
