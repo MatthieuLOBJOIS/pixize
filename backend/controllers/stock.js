@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Stock = require('../models/Stock');
 
 exports.getAllStock = (req, res, next) => {
@@ -40,4 +41,24 @@ exports.createStock = (req, res, next) => {
       .then(() => res.status(201).json({ message: 'Objet enregistré !' }))
       .catch((error) => res.status(400).json({ error }));
   });
+};
+
+exports.deleteStock = (req, res, next) => {
+  try {
+    fs.unlink(req.body.path, () => {
+      Stock.deleteOne({ path: req.body.path })
+        .then(() => {
+          res.status(200).json({
+            message: 'Deleted!',
+          });
+        })
+        .catch((error) => {
+          res.status(400).json({
+            error,
+          });
+        });
+    });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 };
