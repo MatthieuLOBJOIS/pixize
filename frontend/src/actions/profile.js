@@ -4,6 +4,7 @@ export const SET_DISPLAY_ACCOUNT = 'SET_DISPLAY_ACCOUNT';
 export const SET_DISPLAY_GALLERY = 'SET_DISPLAY_GALLERY';
 export const ON_CHANGE_FILES = 'ON_CHANGE_FILES';
 export const UPLOAD_FILES = 'UPLOAD_FILES';
+export const DELETE_FILE = 'DELETE_FILE';
 export const FETCH_STOCKS_CURRENT_USER = 'FETCH_STOCKS_CURRENT_USER';
 export const SAVE_STOCKS_CURRENT_USER = 'SAVE_STOCKS_CURRENT_USER';
 
@@ -38,6 +39,15 @@ export const onChangeFiles = (payload) => ({
 
 export const uploadFiles = () => ({
 	type: UPLOAD_FILES
+});
+
+/**
+ * @param {array} payload path of the file
+ */
+
+export const deleteFile = (payload) => ({
+	type: DELETE_FILE,
+	payload
 });
 
 /**

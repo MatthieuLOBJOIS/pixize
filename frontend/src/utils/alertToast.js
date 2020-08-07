@@ -68,6 +68,16 @@ export const alertToast = (response) => {
 				color: 'green',
 				title: 'Galerie mise à jour !'
 			};
+			break;
+		}
+
+		case 'deleteFile': {
+			alert = {
+				type: 'envira gallery',
+				color: 'orange',
+				title: 'Fichier supprimé'
+			};
+			break;
 		}
 
 		default:
@@ -77,7 +87,7 @@ export const alertToast = (response) => {
 	return toast({
 		...alert,
 		animation: 'bounce',
-		time: 5000,
+		time: 2500,
 		onClose: () => console.log('close'),
 		onClick: () => console.log('you click on the toast'),
 		onDismiss: () => console.log('you have dismissed this toast')

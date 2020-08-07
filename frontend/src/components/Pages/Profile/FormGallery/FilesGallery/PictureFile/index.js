@@ -32,16 +32,22 @@ const PictureFile = ({ imageArray, deleteFile }) => {
 		<div className={classes.imageBlock}>
 			{imageArray.length !== 0 ? (
 				imageArray.map((stock, index) => {
+					const imageClasses = classNames(classes.image, {
+						[classes.imageHover]: isShown[index]
+					});
+
 					return (
 						<div
 							onMouseOver={mouseHover(index)}
 							onFocus={mouseFocus(index)}
 							onMouseLeave={mouseLeave(index)}
 							className={classes.imageElement}
-							key={stock._id}
+							key={stock.filename}
 						>
-							{isShown[index] && <MdDelete onClick={deleteFile} className={classes.deleteImage} />}
-							<img className={classes.image} src={stock.stockUrl} alt={stock.filename} />
+							{isShown[index] && (
+								<MdDelete onClick={deleteFile(stock.path)} className={classes.deleteImage} />
+							)}
+							<img className={imageClasses} src={stock.stockUrl} alt={stock.filename} />
 						</div>
 					);
 				})

@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import {
 	UPLOAD_FILES,
 	FETCH_STOCKS_CURRENT_USER,
+	DELETE_FILE,
 	fetchStocksCurrentUser,
 	saveStocksCurrentUser
 } from 'actions/profile';
@@ -51,6 +52,22 @@ const profileMiddleware = (store) => (next) => (action) => {
 				.then((response) => {
 					console.log(response);
 					store.dispatch(saveStocksCurrentUser(response.data));
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+			break;
+		}
+
+		case DELETE_FILE: {
+			const path = action.payload;
+			console.log(path);
+			axios
+				.delete(url, { data: { path } })
+				.then((response) => {
+					console.log(response);
+					store.dispatch(fetchStocksCurrentUser());
+					alertToast('deleteFile');
 				})
 				.catch((error) => {
 					console.log(error);

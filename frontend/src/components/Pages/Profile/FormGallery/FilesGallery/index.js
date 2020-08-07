@@ -7,7 +7,7 @@ import AudioFile from './AudioFile';
 import useStyles from './style';
 import ArtworkFile from './ArtworkFile';
 
-const FilesGallery = ({ stocksCurrentUser }) => {
+const FilesGallery = ({ stocksCurrentUser, deleteFile }) => {
 	const classes = useStyles();
 
 	const imageArray = [];
@@ -42,7 +42,7 @@ const FilesGallery = ({ stocksCurrentUser }) => {
 	return (
 		<div className={classes.root}>
 			<p className={classes.titleStock}>Mes photos : </p>
-			<PictureFile imageArray={imageArray} />
+			<PictureFile deleteFile={deleteFile} imageArray={imageArray} />
 
 			<p className={classes.titleStock}>Mes Musiques : </p>
 			<AudioFile audioArray={audioArray} />
