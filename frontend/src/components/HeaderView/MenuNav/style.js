@@ -2,28 +2,29 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
 	menu: {
-		width: '100%',
+		width: '100vw',
 		'@media (max-width: 599px)': {
+			zIndex: 1,
 			position: 'fixed',
 			bottom: 0,
 			left: 0,
 			display: 'flex',
 			justifyContent: 'flex-start',
-			backgroundColor: '#F7C873 !important'
-		}
+			backgroundColor: '#F7C873 !important',
+		},
 	},
 	link: {
 		'@media (max-width: 599px)': {
-			width: '25%'
+			width: '25%',
 		},
 		'@media (min-width: 600px)': {
-			width: '50%'
-		}
+			width: '50%',
+		},
 	},
 	item: {
 		height: '100%',
-		justifyContent: 'center'
-	}
+		justifyContent: 'center',
+	},
 });
 
 export default useStyles;

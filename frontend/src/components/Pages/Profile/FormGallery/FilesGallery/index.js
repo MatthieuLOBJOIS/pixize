@@ -1,57 +1,32 @@
 import React from 'react';
 
+import fileTypeFilter from 'utils/fileTypeFilter';
+
 import PictureFile from './PictureFile';
 import VideoFile from './VideoFile';
 import AudioFile from './AudioFile';
+import ArtworkFile from './ArtworkFile';
 
 import useStyles from './style';
-import ArtworkFile from './ArtworkFile';
 
 const FilesGallery = ({ stocksCurrentUser, deleteFile }) => {
 	const classes = useStyles();
 
-	const imageArray = [];
-	const audioArray = [];
-	const videoArray = [];
-	const artworkArray = [];
-
-	stocksCurrentUser.map((stock) => {
-		const fileType = stock.mimetype.split('/')[0];
-		switch (fileType) {
-			case 'image': {
-				if (stock.mimetype === 'image/svg+xml') {
-					artworkArray.push(stock);
-				} else {
-					imageArray.push(stock);
-				}
-				break;
-			}
-			case 'audio': {
-				audioArray.push(stock);
-				break;
-			}
-			case 'video': {
-				videoArray.push(stock);
-				break;
-			}
-			default:
-				console.log('fileType not found');
-		}
-	});
+	const fileArray = fileTypeFilter(stocksCurrentUser);
 
 	return (
 		<div className={classes.root}>
 			<p className={classes.titleStock}>Mes photos : </p>
-			<PictureFile deleteFile={deleteFile} imageArray={imageArray} />
+			<PictureFile deleteFile={deleteFile} imageArray={fileArray.image} />
 
 			<p className={classes.titleStock}>Mes Musiques : </p>
-			<AudioFile audioArray={audioArray} />
+			<AudioFile audioArray={fileArray.audio} />
 
 			<p className={classes.titleStock}>Mes vidéos : </p>
-			<VideoFile videoArray={videoArray} />
+			<VideoFile videoArray={fileArray.video} />
 
 			<p className={classes.titleStock}>Mes Illustrations : </p>
-			<ArtworkFile artworkArray={artworkArray} />
+			<ArtworkFile artworkArray={fileArray.artwork} />
 		</div>
 	);
 };

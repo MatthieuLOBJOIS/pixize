@@ -2,7 +2,7 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
 	root: {
-		height: '100%',
+		height: '70vh',
 
 		'@media (min-width: 600px)': {
 			display: 'flex',
