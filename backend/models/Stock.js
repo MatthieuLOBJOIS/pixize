@@ -1,9 +1,16 @@
 const mongoose = require('mongoose');
 
 const stockSchema = mongoose.Schema({
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  pictureUrl: { type: String, required: true },
+  fieldname: { type: String, required: true },
+  originalname: { type: String, required: true },
+  encoding: { type: String, required: true },
+  mimetype: { type: String, required: true },
+  destination: { type: String, required: true },
+  filename: { type: String, required: true },
+  path: { type: String, required: true },
+  size: { type: Number, required: true },
+  userId: { type: String, required: true },
+  stockUrl: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Stock', stockSchema, 'stock');

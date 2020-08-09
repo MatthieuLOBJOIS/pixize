@@ -31,6 +31,7 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.json());
+app.use('/stock', express.static('stock'));
 app.use('/api/stock', stockRoutes);
 app.use('/api/auth', userRoutes);
 

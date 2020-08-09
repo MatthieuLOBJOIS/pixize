@@ -33,7 +33,7 @@ export const updateCurrentUser = (data) => ({
 });
 
 /**
- * @param {boolean} payload status of the field profile 
+ * @param {boolean} payload status of the field profile
  */
 
 export const statusValidateField = (payload) => ({

@@ -1,14 +1,35 @@
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
-	group: {
-		maxHeight: '60vh',
-		overflow: 'scroll'
+	root: {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center'
 	},
-	picture: {
+	imageBlock: {
+		display: 'flex',
+		justifyContent: 'center',
+		flexWrap: 'wrap',
+		marginBottom: '2em'
+	},
+	imageElement: {
+		margin: '0.5em'
+	},
+	image: {
+		display: 'block',
+		margin: 'auto',
+		'@media (min-width: 600px)': {
+			maxWidth: '400px'
+		},
+		'@media (max-width: 599px)': {
+			maxWidth: '300px'
+		},
 		'&:hover': {
 			filter: 'grayscale(100%)'
 		}
+	},
+	pagination: {
+		backgroundColor: '#EFC26F !important'
 	}
 });
 

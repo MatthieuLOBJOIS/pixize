@@ -7,14 +7,17 @@ const initialState = {
 	status: {
 		username: null,
 		mail: null
-	}
+	},
+	displayAccount: false,
+	displayGallery: false
 };
 
 const userReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case TAKE_DATA_USER: {
 			const token = localStorage.getItem('token');
-			const decoded = jwtDecode(token);
+
+			const decoded = token !== null ? jwtDecode(token) : {};
 
 			return {
 				...state,

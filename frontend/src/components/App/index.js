@@ -7,7 +7,7 @@ import 'react-semantic-toasts/styles/react-semantic-alert.css';
 
 import HeaderView from 'components/HeaderView';
 import FooterView from 'components/FooterView';
-import Home from 'components/Pages/Home';
+import Home from 'containers/Pages/Home';
 import Register from 'containers/Pages/Register';
 import Login from 'containers/Pages/Login';
 import NotFound from 'components/Pages/NotFound';
@@ -31,7 +31,7 @@ const App = ({ fetchAuth }) => {
 					<Switch>
 						<Route
 							exact
-							path={[ '/', '/photos', '/illustrations', '/videos', '/musiques' ]}
+							path={['/', '/photos', '/illustrations', '/videos', '/musiques']}
 							component={Home}
 						/>
 						<Route exact path="/inscription" component={Register} />
@@ -47,7 +47,7 @@ const App = ({ fetchAuth }) => {
 };
 
 App.propTypes = {
-	fetchAuth: PropTypes.func.isRequired
+	fetchAuth: PropTypes.func.isRequired,
 };
 
 export default App;
