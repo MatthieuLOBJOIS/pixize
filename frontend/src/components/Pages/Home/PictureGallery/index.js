@@ -21,7 +21,6 @@ const PictureGallery = ({ imageArray }) => {
 		(activePage - 1) * itemsPerPageRef.current,
 		(activePage - 1) * itemsPerPageRef.current + itemsPerPageRef.current
 	);
-	console.log(Math.round(imageArray.length / itemsPerPageRef.current), imageArray.length);
 
 	const onChange = (e, pageInfo) => {
 		setActivePage(pageInfo.activePage);
