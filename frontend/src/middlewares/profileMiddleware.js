@@ -6,13 +6,13 @@ import {
 	FETCH_STOCKS_CURRENT_USER,
 	DELETE_FILE,
 	fetchStocksCurrentUser,
-	saveStocksCurrentUser
+	saveStocksCurrentUser,
 } from 'actions/profile';
 import { alertToast } from 'utils/alertToast';
 
 const profileMiddleware = (store) => (next) => (action) => {
 	const token = localStorage.getItem('token');
-	const decoded = jwtDecode(token);
+	const decoded = token !== null ? jwtDecode(token) : {};
 	const url = `${process.env.REACT_APP_API_URL}/api/stock/${decoded.userId}`;
 
 	switch (action.type) {
@@ -28,8 +28,8 @@ const profileMiddleware = (store) => (next) => (action) => {
 
 				const config = {
 					headers: {
-						'content-type': 'multipart/form-data'
-					}
+						'content-type': 'multipart/form-data',
+					},
 				};
 
 				axios

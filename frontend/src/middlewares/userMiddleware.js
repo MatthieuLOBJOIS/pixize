@@ -1,7 +1,12 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
-import { CHANGE_CURRENT_USER, SAVE_NEW_CURRENT_USER, updateCurrentUser, statusValidateField } from 'actions/user';
+import {
+	CHANGE_CURRENT_USER,
+	SAVE_NEW_CURRENT_USER,
+	updateCurrentUser,
+	statusValidateField,
+} from 'actions/user';
 import { validateField } from 'utils/validateField';
 import { alertToast } from 'utils/alertToast';
 
@@ -16,12 +21,12 @@ const userMiddleware = (store) => (next) => (action) => {
 
 			currentUser = {
 				...currentUser,
-				[identifier]: value
+				[identifier]: value,
 			};
 
 			status = {
 				...status,
-				[identifier]: validateField(value, identifier)
+				[identifier]: validateField(value, identifier),
 			};
 
 			store.dispatch(updateCurrentUser(currentUser));
@@ -32,7 +37,7 @@ const userMiddleware = (store) => (next) => (action) => {
 		case SAVE_NEW_CURRENT_USER: {
 			const newCurrentUser = store.getState().user.currentUser;
 			const token = localStorage.getItem('token');
-			const decoded = jwtDecode(token);
+			const decoded = token !== null ? jwtDecode(token) : {};
 			const status = store.getState().user.status;
 
 			const statusArray = Object.values(status);
@@ -40,7 +45,8 @@ const userMiddleware = (store) => (next) => (action) => {
 			const foundTruthy = statusArray.some((element) => element === true);
 
 			if (
-				Object.entries(newCurrentUser).toString() !== Object.entries(decoded.userData).toString() &&
+				Object.entries(newCurrentUser).toString() !==
+					Object.entries(decoded.userData).toString() &&
 				!foundFalsy &&
 				foundTruthy
 			) {
@@ -48,8 +54,8 @@ const userMiddleware = (store) => (next) => (action) => {
 					method: 'put',
 					url: `${process.env.REACT_APP_API_URL}/api/auth/user/update`,
 					data: {
-						...newCurrentUser
-					}
+						...newCurrentUser,
+					},
 				})
 					.then((response) => {
 						console.log(response);
