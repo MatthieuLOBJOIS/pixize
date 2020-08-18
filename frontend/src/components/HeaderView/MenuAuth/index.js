@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Menu, Button, Icon } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 
+import Profile from 'containers/Pages/Profile';
 import useStyles from './style';
 
-const MenuAuth = ({ logoutUser, userAuth }) => {
+const MenuAuth = ({ logoutUser, userAuth, currentUser }) => {
 	const classes = useStyles();
 	const history = useHistory();
 	const [ darkMode, setDarkMode ] = useState(false);
+	const [ displayModal, setDisplayModal ] = useState(false);
 
 	const handleDarkMode = () => {
 		switch (darkMode) {
@@ -32,7 +34,11 @@ const MenuAuth = ({ logoutUser, userAuth }) => {
 					history.push('/inscription');
 					break;
 				case 'settings':
-					history.push('/profil');
+					if (!currentUser.check) {
+						history.push('/profil/compte');
+					} else {
+						setDisplayModal(true);
+					}
 					break;
 				case 'logout':
 					history.push('/');
@@ -78,6 +84,7 @@ const MenuAuth = ({ logoutUser, userAuth }) => {
 					name={darkMode === false ? 'sun' : 'moon'}
 				/>
 			</Menu.Item>
+			<Profile displayModal={displayModal} setDisplayModal={setDisplayModal} />
 		</Menu.Menu>
 	);
 };

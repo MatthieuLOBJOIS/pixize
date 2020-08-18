@@ -5,7 +5,8 @@ import { logoutUser } from 'actions/auth';
 
 const mapStateToProps = (state) => {
 	return {
-		userAuth: state.auth.userAuth
+		userAuth: state.auth.userAuth,
+		currentUser: state.user.currentUser
 	};
 };
 

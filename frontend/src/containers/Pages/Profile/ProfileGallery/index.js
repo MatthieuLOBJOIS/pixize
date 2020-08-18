@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import FormGallery from 'components/Pages/Profile/FormGallery';
+import ProfileGallery from 'components/Pages/Profile/ProfileGallery';
 import { setDisplayGallery, fetchStocksCurrentUser } from 'actions/profile';
 
 const mapStateToProps = (state) => {
@@ -21,4 +21,4 @@ const mapDispatchToProps = (dispatch) => ({
 	}
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormGallery);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileGallery);

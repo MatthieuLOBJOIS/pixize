@@ -1,32 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Icon, Checkbox } from 'semantic-ui-react';
-import classNames from 'classnames';
-import { FcSettings } from 'react-icons/fc';
+import { Form, Button } from 'semantic-ui-react';
 
 import Field from './Field';
 import useStyles from './style';
 
-const FormAccount = ({
-	currentUser,
-	username,
-	mail,
-	changeCurrentUser,
-	saveNewCurrentUser,
-	setDisplayAccount,
-	displayAccount
-}) => {
-	//	console.log(currentUser);
+const ProfileAccount = ({ currentUser, username, mail, changeCurrentUser, saveNewCurrentUser }) => {
 	const classes = useStyles();
-	const accountClass = classNames(
-		{ [classes.accountHidden]: !displayAccount },
-		{ [classes.accountDisplay]: displayAccount }
-	);
+
 	return (
 		<div>
-			<FcSettings className={classes.iconAccount} onClick={setDisplayAccount('open')} />
-			<div className={accountClass}>
-				<Icon onClick={setDisplayAccount('close')} name="close" color="brown" size="big" />
+			<div className={classes.accountDisplay}>
 				<Form onSubmit={saveNewCurrentUser}>
 					<Field
 						label="Nom d'utilisateur"
@@ -73,10 +57,10 @@ const FormAccount = ({
 	);
 };
 
-FormAccount.propTypes = {
+ProfileAccount.propTypes = {
 	currentUser: PropTypes.objectOf(PropTypes.string).isRequired,
 	changeCurrentUser: PropTypes.func.isRequired,
 	saveNewCurrentUser: PropTypes.func.isRequired
 };
 
-export default FormAccount;
+export default ProfileAccount;

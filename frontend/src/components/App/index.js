@@ -11,7 +11,8 @@ import Home from 'containers/Pages/Home';
 import Register from 'containers/Pages/Register';
 import Login from 'containers/Pages/Login';
 import NotFound from 'components/Pages/NotFound';
-import Profile from 'components/Pages/Profile';
+import ProfileAccount from 'containers/Pages/Profile/ProfileAccount';
+import ProfileGallery from 'containers/Pages/Profile/ProfileGallery';
 
 import useStyles from './style';
 
@@ -31,12 +32,13 @@ const App = ({ fetchAuth }) => {
 					<Switch>
 						<Route
 							exact
-							path={['/', '/photos', '/illustrations', '/videos', '/musiques']}
+							path={[ '/', '/photos', '/illustrations', '/videos', '/musiques' ]}
 							component={Home}
 						/>
 						<Route exact path="/inscription" component={Register} />
 						<Route exact path="/connexion" component={Login} />
-						<Route exact path="/profil" component={Profile} />
+						<Route exact path="/profil/compte" component={ProfileAccount} />
+						<Route exact path="/profil/galerie" component={ProfileGallery} />
 						<Route component={NotFound} />
 					</Switch>
 				</Segment>
@@ -47,7 +49,7 @@ const App = ({ fetchAuth }) => {
 };
 
 App.propTypes = {
-	fetchAuth: PropTypes.func.isRequired,
+	fetchAuth: PropTypes.func.isRequired
 };
 
 export default App;
