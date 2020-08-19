@@ -37,6 +37,7 @@ const Profile = ({ displayModal, setDisplayModal }) => {
 						basic
 						color="orange"
 						inverted
+						className={classes.buttonAccount}
 						onClick={() => {
 							history.push('/profil/compte');
 							setDisplayModal(false);
@@ -47,6 +48,7 @@ const Profile = ({ displayModal, setDisplayModal }) => {
 					<Button
 						color="grey"
 						inverted
+						className={classes.buttonGallery}
 						onClick={() => {
 							history.push('/profil/galerie');
 							setDisplayModal(false);

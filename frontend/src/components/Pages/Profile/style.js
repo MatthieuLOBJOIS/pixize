@@ -40,6 +40,9 @@ const useStyles = createUseStyles({
 			fontSize: '5em'
 		}
 	},
+	buttonGallery: {
+		cursor: 'pointer'
+	},
 	iconAccount: {
 		cursor: 'pointer',
 		'@media (min-width: 600px)': {
@@ -48,6 +51,9 @@ const useStyles = createUseStyles({
 		'@media (max-width: 599px)': {
 			fontSize: '5em'
 		}
+	},
+	buttonAccount: {
+		cursor: 'pointer'
 	}
 });
 
