@@ -2,21 +2,20 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
 import Field from 'components/Pages/Login/Field';
+import useStyles from './style';
 
 const Login = ({ onChangeInput, mail, password, loginUser, userAuth }) => {
 	const history = useHistory();
+	const classes = useStyles();
 
-	useEffect(
-		() => {
-			if (userAuth === 'isConnect') {
-				history.push('/');
-			}
-		},
-		[ userAuth ]
-	);
+	useEffect(() => {
+		if (userAuth === 'isConnect') {
+			history.push('/');
+		}
+	}, [userAuth]);
 
 	return (
-		<div>
+		<div className={classes.root}>
 			<Form>
 				<Field
 					onChangeInput={onChangeInput}
