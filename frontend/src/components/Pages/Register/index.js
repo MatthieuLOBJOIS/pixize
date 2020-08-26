@@ -4,6 +4,7 @@ import { Button, Form, Checkbox } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import Field from 'components/Pages/Register/Field';
+import useStyles from './style';
 
 const Register = ({
 	username,
@@ -16,22 +17,20 @@ const Register = ({
 	registerUser,
 	isSubmit,
 	userCreat,
-	clearField
+	clearField,
 }) => {
 	const history = useHistory();
+	const classes = useStyles();
 
-	useEffect(
-		() => {
-			if (userCreat === 'isCreat') {
-				history.push('/');
-				clearField();
-			}
-		},
-		[ userCreat ]
-	);
+	useEffect(() => {
+		if (userCreat === 'isCreat') {
+			history.push('/');
+			clearField();
+		}
+	}, [userCreat]);
 
 	return (
-		<div>
+		<div className={classes.root}>
 			<Form>
 				<Field
 					label="Nom d'utilisateur"
@@ -74,7 +73,12 @@ const Register = ({
 				/>
 
 				<Form.Field>
-					<Checkbox onChange={onChangeCheck} checked={check} id="check" label="Créateur de contenu ?" />
+					<Checkbox
+						onChange={onChangeCheck}
+						checked={check}
+						id="check"
+						label="Créateur de contenu ?"
+					/>
 				</Form.Field>
 				<Button onClick={registerUser} type="submit">
 					Créer votre compte Pixize
@@ -87,29 +91,29 @@ const Register = ({
 Register.propTypes = {
 	username: PropTypes.shape({
 		value: PropTypes.string.isRequired,
-		status: PropTypes.bool.isRequired
+		status: PropTypes.bool.isRequired,
 	}).isRequired,
 
 	mail: PropTypes.shape({
 		value: PropTypes.string.isRequired,
-		status: PropTypes.bool.isRequired
+		status: PropTypes.bool.isRequired,
 	}).isRequired,
 
 	password: PropTypes.shape({
 		value: PropTypes.string.isRequired,
-		status: PropTypes.bool.isRequired
+		status: PropTypes.bool.isRequired,
 	}).isRequired,
 
 	passwordConfirm: PropTypes.shape({
 		value: PropTypes.string.isRequired,
-		status: PropTypes.bool.isRequired
+		status: PropTypes.bool.isRequired,
 	}).isRequired,
 
 	check: PropTypes.bool.isRequired,
 
 	onChangeInput: PropTypes.func.isRequired,
 	onChangeCheck: PropTypes.func.isRequired,
-	isSubmit: PropTypes.bool.isRequired
+	isSubmit: PropTypes.bool.isRequired,
 };
 
 export default Register;

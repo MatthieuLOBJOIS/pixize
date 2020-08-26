@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import FilesGallery from 'components/Pages/Profile/FormGallery/FilesGallery';
+import FilesGallery from 'components/Pages/Profile/ProfileGallery/FilesGallery';
 
 import { deleteFile } from 'actions/profile';
 

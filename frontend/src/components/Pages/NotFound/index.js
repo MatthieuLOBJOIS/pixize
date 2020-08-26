@@ -1,7 +1,9 @@
-import React from 'react'
+import React from 'react';
+import useStyles from './style';
 
 const NotFound = () => {
-  return <div>Page erreur 404</div>
-}
+	const classes = useStyles();
+	return <div className={classes.root}>Page erreur 404</div>;
+};
 
 export default NotFound;

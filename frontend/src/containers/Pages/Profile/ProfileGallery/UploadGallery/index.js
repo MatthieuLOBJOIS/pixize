@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import UploadGallery from 'components/Pages/Profile/FormGallery/UploadGallery';
+import UploadGallery from 'components/Pages/Profile/ProfileGallery/UploadGallery';
 
 import { onChangeFiles, uploadFiles } from 'actions/profile';
 

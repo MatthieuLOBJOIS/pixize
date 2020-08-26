@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import FormAccount from 'components/Pages/Profile/FormAccount';
+import ProfileAccount from 'components/Pages/Profile/ProfileAccount';
 import { changeCurrentUser, saveNewCurrentUser } from 'actions/user';
 import { setDisplayAccount } from 'actions/profile';
 
@@ -29,4 +29,4 @@ const mapDispatchToProps = (dispatch) => ({
 	}
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormAccount);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileAccount);

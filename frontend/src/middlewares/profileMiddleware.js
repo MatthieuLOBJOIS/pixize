@@ -15,6 +15,12 @@ const profileMiddleware = (store) => (next) => (action) => {
 	const decoded = token !== null ? jwtDecode(token) : {};
 	const url = `${process.env.REACT_APP_API_URL}/api/stock/${decoded.userId}`;
 
+	const headers =  {
+			'Content-Type': 'application/json',
+ 		  'Authorization': `Bearer ${token}`
+		}
+	
+
 	switch (action.type) {
 		case UPLOAD_FILES: {
 			const files = store.getState().profile.files;
@@ -26,14 +32,8 @@ const profileMiddleware = (store) => (next) => (action) => {
 					data.append('multi-files', files[i]);
 				}
 
-				const config = {
-					headers: {
-						'content-type': 'multipart/form-data',
-					},
-				};
-
 				axios
-					.post(url, data, config.headers)
+					.post(url, data, {headers: {...headers, 'Content-Type': 'multipart/form-data'}  })
 					.then((response) => {
 						console.log(response);
 						alertToast('galleryUpdate');
@@ -48,7 +48,7 @@ const profileMiddleware = (store) => (next) => (action) => {
 
 		case FETCH_STOCKS_CURRENT_USER: {
 			axios
-				.get(url, decoded.userId)
+				.get(url, {headers})
 				.then((response) => {
 					console.log(response);
 					store.dispatch(saveStocksCurrentUser(response.data));
@@ -61,9 +61,8 @@ const profileMiddleware = (store) => (next) => (action) => {
 
 		case DELETE_FILE: {
 			const path = action.payload;
-			console.log(path);
 			axios
-				.delete(url, { data: { path } })
+				.delete(url, { data: { path }, headers })
 				.then((response) => {
 					console.log(response);
 					store.dispatch(fetchStocksCurrentUser());
