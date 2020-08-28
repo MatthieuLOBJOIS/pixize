@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VideoGallery = () => {
+const VideoGallery = ({ imageArray }) => {
 	return <div>videos</div>;
 };
 

@@ -5,6 +5,7 @@ import { getAllStock } from 'actions/stock';
 
 const mapStateToProps = (state) => ({
 	allStock: state.stock.allStock,
+	searchValue: state.stock.searchValue,
 });
 
 const mapDispatchToProps = (dispatch) => ({

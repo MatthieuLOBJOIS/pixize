@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MusicGallery = () => {
+const MusicGallery = ({ imageArray }) => {
 	return <div>musiques</div>;
 };
 

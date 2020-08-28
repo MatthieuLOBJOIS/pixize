@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import SearchBar from 'components/Pages/Home/SearchBar';
+import SearchBar from 'containers/Pages/Home/SearchBar';
 import PictureGallery from 'components/Pages/Home/PictureGallery';
 import ArtworkGallery from 'components/Pages/Home/ArtworkGallery';
 import VideoGallery from 'components/Pages/Home/VideoGallery';
@@ -12,7 +12,7 @@ import fileTypeFilter from 'utils/fileTypeFilter';
 
 import useStyles from './style';
 
-const Home = ({ getAllStock, allStock }) => {
+const Home = ({ getAllStock, allStock, searchValue }) => {
 	const classes = useStyles();
 
 	useEffect(() => {
@@ -28,11 +28,28 @@ const Home = ({ getAllStock, allStock }) => {
 				<Route
 					exact
 					path={['/', '/photos']}
-					render={() => <PictureGallery imageArray={fileArray.image} />}
+					render={() => (
+						<PictureGallery
+							searchValue={searchValue}
+							imageArray={fileArray.image}
+						/>
+					)}
 				/>
-				<Route exact path="/illustrations" component={ArtworkGallery} />
-				<Route exact path="/videos" component={VideoGallery} />
-				<Route exact path="/musiques" component={MusicGallery} />
+				<Route
+					exact
+					path="/illustrations"
+					render={() => <ArtworkGallery imageArray={fileArray.artwork} />}
+				/>
+				<Route
+					exact
+					path="/videos"
+					render={() => <VideoGallery imageArray={fileArray.video} />}
+				/>
+				<Route
+					exact
+					path="/musiques"
+					render={() => <MusicGallery imageArray={fileArray.audio} />}
+				/>
 			</Switch>
 		</main>
 	);
