@@ -1,18 +1,24 @@
 import React, { useState, useRef } from 'react';
 import { Divider, Pagination } from 'semantic-ui-react';
 
+import useSearch from 'utils/hooks/useSearch';
 import useStyles from './style';
 
-const PictureGallery = ({ imageArray }) => {
+const PictureGallery = ({ imageArray, searchValue }) => {
 	const classes = useStyles();
-
-	const [ activePage, setActivePage ] = useState(1);
+	const search = useSearch(searchValue, imageArray);
+	const [activePage, setActivePage] = useState(1);
 	const itemsPerPageRef = useRef(5);
+	const totalPages = Math.ceil(imageArray.length / itemsPerPageRef.current);
 
-	const listPicture = imageArray.map((stock) => {
+	const listPicture = search.map((stock) => {
 		return (
 			<div className={classes.imageElement} key={stock.filename}>
-				<img className={classes.image} src={stock.stockUrl} alt={stock.filename} />
+				<img
+					className={classes.image}
+					src={stock.stockUrl}
+					alt={stock.filename}
+				/>
 			</div>
 		);
 	});
@@ -22,7 +28,7 @@ const PictureGallery = ({ imageArray }) => {
 		(activePage - 1) * itemsPerPageRef.current + itemsPerPageRef.current
 	);
 
-	const onChange = (e, pageInfo) => {
+	const onPageChange = (e, pageInfo) => {
 		setActivePage(pageInfo.activePage);
 	};
 
@@ -33,13 +39,13 @@ const PictureGallery = ({ imageArray }) => {
 			<Pagination
 				className={classes.pagination}
 				activePage={activePage}
-				onPageChange={onChange}
+				onPageChange={onPageChange}
 				boundaryRange={0}
 				ellipsisItem={null}
 				firstItem={null}
 				lastItem={null}
 				siblingRange={1}
-				totalPages={Math.ceil(imageArray.length / itemsPerPageRef.current)}
+				totalPages={totalPages}
 			/>
 		</div>
 	);

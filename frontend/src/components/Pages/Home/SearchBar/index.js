@@ -3,11 +3,16 @@ import { Search } from 'semantic-ui-react';
 
 import useStyles from './style';
 
-const SearchBar = () => {
+const SearchBar = ({ searchValue, searchbarStock }) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
-			<Search className={classes.search} input={{ fluid: true }} />
+			<Search
+				value={searchValue}
+				onSearchChange={searchbarStock}
+				className={classes.search}
+				input={{ fluid: true }}
+			/>
 		</div>
 	);
 };
